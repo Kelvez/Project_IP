@@ -81,7 +81,7 @@ export default {
                     </div>
                     <button class="submitButton" type="submit">Sign Up</button>
                     <div id="textUnderLoginRegisterButton">
-                        <p class="greyText">Already have an account ? <a id="switchRegisterLogin" href="/">Login</a></p>
+                        <p class="greyText">Already have an account ? <a id="switchRegisterLogin" href="login">Login</a></p>
                     </div>
                     <p class="errorMsg">{{error}}</p>
                 </div>
@@ -90,7 +90,7 @@ export default {
         
 
         <div class="blocRight">
-            <p class="arts">ARTS</p>
+            <a class="arts" href="/">ARTS</a>
             <img class="artsLogo" src="../assets/Images/artsLogo.png">
         </div>
     </div>

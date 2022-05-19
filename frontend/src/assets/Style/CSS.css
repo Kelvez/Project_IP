@@ -37,12 +37,15 @@
 
 .artsLogo{
     width: 80%;
+    height: 80%;
 }
 
 .arts{
+    display: block;
     text-align: center;
     font-size: 500%;
     font-family: "Cinzel Decorative";
+    color: #000000;
 }
 
 .submitButton {

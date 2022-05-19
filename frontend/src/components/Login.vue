@@ -77,7 +77,7 @@ export default {
         </div>
 
         <div class="blocRight">
-            <p class="arts">ARTS</p>
+            <a class="arts" href="/">ARTS</a>
             <img class="artsLogo" src="../assets/Images/artsLogo.png">
         </div>
     </div>

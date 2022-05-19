@@ -41,7 +41,7 @@ export default {
                     <li><a href="#">Category</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a class="fa-solid fa-bell"></a></li>
-                    <li><a class="fa-solid fa-user"></a></li>
+                    <li><a href="login" class="fa-solid fa-user"></a></li>
                 </ul>
             </div>
             <div class="content">
@@ -200,6 +200,7 @@ export default {
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -371,7 +372,7 @@ section {
 }
 /*-- View --*/
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
 
 *{
   font-family: 'Poppins', sans-serif;
