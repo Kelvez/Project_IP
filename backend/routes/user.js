@@ -4,12 +4,6 @@ const { logout } = require('../services/logout');
 const userService = require("../services/user");
 var router = express.Router();
 
-router.get('/me', auth.ensureSignedIn, auth.currentUser, async (req, res) => {
-  const { currentUser } = req;
-  const result = await userService.findById(currentUser?._id);
-  res.json(result);
-})
-
 router.get('/users', auth.ensureSignedIn, async (req, res) => {
   const users = await userService.getUsers();
   res.json(users);

@@ -4,7 +4,7 @@ const config = process.env;
 
 const currentUser = (req, res, next) => {
   if (!req.session.jwt) {
-    return res.send("You must log in");
+    return res.send({success: false, error: "You must log in"});
   }
 
   const user = jwt.verify(req.session.jwt, 'jwt-secret');
@@ -14,14 +14,14 @@ const currentUser = (req, res, next) => {
 
 const ensureSignedOut = (req, res, next) => {
   if (req.session.jwt) {
-    return res.send("You are already logged in");
+    return res.send({success: false, error: "You are already logged in"});
   }
   next();
 };
 
 const ensureSignedIn = (req, res, next) => {
   if (!req.session.jwt) {
-    return res.send("You must log in");
+    return res.send({success: false, error: "You must log in"});
   }
   next();
 };

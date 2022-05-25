@@ -14,7 +14,7 @@ export default {
     },
     methods:{
         submitEmail() {
-            this.$http.post('http://localhost:3001/auth/sendMail', {email: this.email})
+            this.$http.post('http://localhost:3001/auth/sendMail', {code: this.code, email: this.email, newPass: this.newPass}, {withCredentials: true, headers: {"Content-type": "application/json",}})
              .then((res) => {
                 if (res.data.success) {
                     this.error = "";
@@ -37,7 +37,7 @@ export default {
             }
         },
         submitPass() {
-            this.$http.post('http://localhost:3001/auth/newPassword', {code: this.code, email: this.email, newPass: this.newPass})
+            this.$http.post('http://localhost:3001/auth/newPassword', {code: this.code, email: this.email, newPass: this.newPass}, {withCredentials: true, headers: {"Content-type": "application/json",}})
              .then((res) => {
                  console.log(res);
                 if (res.data.success) {
@@ -70,7 +70,12 @@ export default {
     <div class="rightLeft">
         <div class="blocLeft">
             <div class="border">
-                <p class="welcome">Welcome !</p>
+                <div class="welcomeDiv">
+                    <a href="/">
+                    <img class="houseMenuImg" alt="Menu" src="../assets/Images/houseLogo.png">
+                    </a>
+                    <p class="welcome">Welcome !</p>
+                </div>
                 <p class="signInUp">Password forgotten</p>
                 <p class="happyTo">Don't panic an email will be sent to you to reset your password</p>
                 <form method="post" @submit.prevent="submitEmail">

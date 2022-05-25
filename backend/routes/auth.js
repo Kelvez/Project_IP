@@ -6,8 +6,15 @@ const { register } = require("../services/register");
 const mailSenderService = require("../services/mailSender");
 const forgotPassService = require("../services/forgotPass");
 const auth = require("../middlewares/auth");
+const userService = require("../services/user");
 const { logout } = require('../services/logout');
 var router = express.Router();
+
+router.get('/me', auth.ensureSignedIn, auth.currentUser, async (req, res) => {
+  const { currentUser } = req;
+  const result = await userService.findById(currentUser?._id);
+  res.json(result);
+})
 
 router.post('/logout', auth.ensureSignedIn, async (req, res) => {
   const result = logout(req.session);

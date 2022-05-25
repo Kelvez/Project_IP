@@ -20,8 +20,8 @@ router.put('/update', auth.ensureSignedIn, async (req, res, next) => {
     res.json(result);
 })
 
-router.delete('/delete', auth.ensureSignedIn, async (req, res, next) => {
-    const { id } = req.body;
+router.delete('/delete/:id', auth.ensureSignedIn, async (req, res, next) => {
+    const { id } = req.params;
     const deletedArt = await artService.remove(id);
     res.json(deletedArt);
 })

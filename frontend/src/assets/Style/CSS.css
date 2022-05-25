@@ -69,7 +69,8 @@
 
 .welcome{
     font-size: 25px;
-    padding-bottom: 3%;
+    padding-bottom: 3px;
+    padding-top: 6px;
 }
 
 .signInUp{
@@ -97,6 +98,15 @@
 
 .passwordDiv {
     display: flex;
+}
+
+.welcomeDiv {
+    display: flex;
+}
+
+.houseMenuImg {
+    width: 45px;
+    height: 45px;
 }
 
 

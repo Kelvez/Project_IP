@@ -12,10 +12,10 @@ export default {
   },
   methods:{
     submitLogin(){
-      this.$http.post('http://localhost:3001/auth/login', this.dataLogin)
+      this.$http.post('http://localhost:3001/auth/login', this.dataLogin, {withCredentials: true, headers: {"Content-type": "application/json",}})
            .then((res) => {
              if (res.data.success) {
-               this.$router.push({name: "register"});
+               this.$router.push({name: "main"});
              } else {
                this.error = res.data.error;
              }
@@ -45,7 +45,12 @@ export default {
         <div class="blocLeft">
             <form method="post" @submit.prevent="submitLogin">
                 <div class="border">
-                    <p class="welcome">Welcome !</p>
+                    <div class="welcomeDiv">
+                      <a href="/">
+                        <img class="houseMenuImg" alt="Menu" src="../assets/Images/houseLogo.png">
+                      </a>
+                      <p class="welcome">Welcome !</p>
+                    </div>
                     <p class="signInUp">Sign in to ARTS</p>
                     <p class="happyTo">Happy to see you again !</p>
                     <div id="googleBtn" class="form-group">
@@ -77,7 +82,7 @@ export default {
         </div>
 
         <div class="blocRight">
-            <a class="arts" href="/">ARTS</a>
+            <p class="arts">ARTS</p>
             <img class="artsLogo" src="../assets/Images/artsLogo.png">
         </div>
     </div>
@@ -86,7 +91,7 @@ export default {
 </template>
 
 <style>
-  @import "../assets/Style/CSS.css";
+@import "../assets/Style/CSS.css";
 
 #googleIcon {
     display: inline-block;

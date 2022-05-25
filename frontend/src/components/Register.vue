@@ -15,7 +15,7 @@ export default {
     },
     methods:{
         submitRegister(){
-        this.$http.post('http://localhost:3001/auth/register', this.dataRegister)
+        this.$http.post('http://localhost:3001/auth/register', this.dataRegister, {withCredentials: true, headers: {"Content-type": "application/json",}})
              .then((res) => {
                 console.log(res.data);
                 if (res.data.success) {
@@ -54,7 +54,12 @@ export default {
         <div class="blocLeft">
             <form method="post" @submit.prevent="submitRegister">
                 <div class="border">
-                    <p class="welcome">Welcome !</p>
+                    <div class="welcomeDiv">
+                      <a href="/">
+                        <img class="houseMenuImg" alt="Menu" src="../assets/Images/houseLogo.png">
+                      </a>
+                      <p class="welcome">Welcome !</p>
+                    </div>
                     <p class="signInUp">Sign up to ARTS</p>
                     <p class="happyTo">Happy to meet you !</p>
                     <div class="form-group">
@@ -90,7 +95,7 @@ export default {
         
 
         <div class="blocRight">
-            <a class="arts" href="/">ARTS</a>
+            <p class="arts">ARTS</p>
             <img class="artsLogo" src="../assets/Images/artsLogo.png">
         </div>
     </div>
