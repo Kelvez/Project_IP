@@ -55,7 +55,7 @@ export default {
                     <p class="happyTo">Happy to see you again !</p>
                     <div id="googleBtn" class="form-group">
                         <div id="insideGoogleBtn">
-                            <img id="googleIcon" src="../assets/Images/googleLogo.png">
+                            <img id="googleIcon" src="../assets/Images/login/googleLogo.png">
                             <span id="buttonText">Continue with Google</span>
                         </div>
                     </div>

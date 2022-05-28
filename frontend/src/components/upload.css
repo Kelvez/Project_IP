@@ -1,0 +1,412 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+   
+}
+.header{
+    width: 100%;
+    height: 55px;
+    background-color:#fff;
+    background-position: center;
+    background-size: cover;
+   
+    position: relative;
+   
+  
+   
+
+}
+.header h1{
+    color:rgb(53, 50, 50);
+    font-size: 40px;
+  
+   
+    
+   
+}
+nav{
+   display: flex; 
+   padding:0px 6%;
+   border-bottom: 2px solid #fff;
+ 
+   justify-content: space-between;
+   align-items:center;
+}
+
+.nav-links{
+    flex: 1;
+    text-align: right;
+ 
+    
+}
+li{
+    list-style: none;
+    display: inline-block;
+    padding:5px 12px;
+    position: relative;
+   
+}
+li a{
+    color: rgb(53, 50, 50);
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 24px;
+   
+
+}
+li::after{
+    content: '';
+    width: 0%;
+    height:2px;
+    background: #f44336;
+    display:block;
+    margin: auto;
+    transition: 0.5s;
+}
+li:hover::after{
+    width: 100%;
+
+}
+
+.upload{
+    background-color: #f4f5f0;
+   
+}
+.row{
+    display:flex;
+    justify-content:flex-start;
+     margin-left: 100px;
+     margin-right:100px;
+
+
+}
+.p-col1{
+   
+    background:#fff;
+    margin-top:4%;
+    margin-bottom:4%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    height:792px;
+    width: 638px;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    
+    transition:0.5s;
+     
+}
+.p-col1:hover{
+    box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+}
+/*box upload*/
+.p-col1 p{
+ text-align:center;
+ margin-top:20px;
+ color:#e5e7db;
+}
+.p-col1 .all-cicle1{
+    display:flex;
+    justify-content:center;
+     
+}
+.p-col1 .fa{
+    
+    display:block;
+    color:blue; 
+    font-size:40px ;   
+}
+.all-cicle1 .box{
+    width:150px;
+    height:150px;
+    background-color: #e5e7db;
+    margin-left: 10px;
+    margin-right:10px;
+    margin-top:40px;
+    border-radius: 100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    transition:0.5s;
+}
+.box:hover{
+  
+    background-color:cornflowerblue;
+}
+
+.p-col1 .word-box{
+    display:flex;
+    justify-content:center;
+}
+.word-box .word{
+    margin-left: 67px;
+    margin-right:55px;
+    margin-top:30px;
+
+
+}
+/* cicle line 2*/
+.p-col1 .all-cicle2{
+    display:flex;
+    justify-content:center;
+     
+}
+.all-cicle2 .box{
+    width:150px;
+    height:150px;
+    background-color: #e5e7db;
+    margin-left: 10px;
+    margin-right:10px;
+    margin-top:50px;
+    border-radius: 100%;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    transition:0.5s;
+}
+.all-cicle2 .box:hover{
+   
+    background-color:cornflowerblue;
+}
+
+
+
+.p-col2{
+   
+    
+    margin-top:4%;
+    margin-bottom:4%;
+    box-sizing: border-box;
+    height:792px;
+    width: 640px;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    
+     
+}
+.p-table1{
+   
+    background:#fff;
+    width:100%;
+    height: 187px;
+    margin-bottom:5%;
+    box-sizing: border-box;
+   transition:0.6s;
+}
+.p-table1:hover{
+    box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+}
+.p-table1 .p-header{
+    background-color:#cacac7;
+    
+}
+.p-table1 .p-header h4{
+ padding:12px 12px;
+    
+}
+.p-table1 .content{
+    display:flex;
+    justify-content:center;
+}
+.content .square{
+    width:150px;
+    height:150px;
+    background-color: #fff;
+    border: 1px solid #e5e7db;
+    
+    justify-content:center;
+    align-items: center;
+
+}
+.p-col2 .fa{
+    
+    display:block;
+    color:#000; 
+    font-size:40px ;
+    margin-top: 40px;
+    margin-left:50px;
+    
+}
+.square #text{
+    margin-top:10px;
+    margin-left: 50px;
+   
+}
+
+
+
+
+
+.p-table2{
+   
+    background:#fff;
+    width:100%;
+    height: 187px;
+    margin-bottom:5%;
+    box-sizing: border-box;
+    
+    transition:0.5s;
+}
+.p-table2:hover{
+    box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+}
+.p-table2 .p-header{
+    background-color:#cacac7;
+    
+}
+.p-table2 .p-header h4{
+ padding:12px 12px;
+    
+}
+.p-table2 .content{
+  width:100%;
+    
+  
+}
+
+.p-table2 .attach{
+    width:150px;
+    height:30px;
+    margin-top:50px;
+    margin-left:230px;
+    border-radius: 30px;
+    background-color:#fff;
+    border: 1px solid #e5e7db;
+    justify-content:center;
+    display: flex;
+    transition: 0.5s;
+
+}
+.attach:hover{
+    background-color:blue;
+    box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+
+
+}
+.attach .text-name{
+    margin-top: 5px;
+}
+    /*table3*/
+    .p-table3{
+   
+        background:#fff;
+        width:100%;
+        height: 187px;
+        margin-bottom:5%;
+        box-sizing: border-box;
+       transition:0.5s;
+      
+        justify-content:center;
+      
+        align-items: center;
+    }
+    .p-table3:hover{
+        box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+    }
+   
+    .p-table3 #b1{
+        width: 80%;
+        border-radius: 20px;
+        height:40px;
+        color:#fff;
+        background-color:green;
+        margin-left: 60px;
+        margin-top: 40px;
+        transition:0.5s;
+
+    }
+    #b1:hover{
+        background-color:blue;
+    
+    }
+    .p-table3 #b2{
+        width: 80%;
+        height:40px;
+        border-radius: 20px;
+        background-color:blueviolet;
+        color:#fff;
+        margin-left: 60px;
+        margin-top: 30px;
+        transition:0.5s;
+       
+
+    }
+    #b2:hover{
+        background-color:blue;
+    
+    }
+
+
+
+
+/*----footer----*/
+
+.footer{
+            
+    width: 100%;
+    height: 200px;
+    
+    background-color: rgb(66, 63, 63);
+    color:aliceblue   
+}
+.display{
+display: flex;
+justify-content: space-between;
+padding-top: 30px;
+padding-left: 30px;
+padding-right: 30px;
+}
+.display .fa{
+    display:block;
+    color: #fff;
+    margin: 10px ;
+    font-size:22px ;
+    cursor: pointer;
+    transition:0.5s;
+
+}
+.fa:hover{
+    color:blue;
+   
+}
+
+.icon a{
+   color: aliceblue;
+   text-decoration: none;
+    font-size: 40px;
+}
+
+.icon{
+   padding-top: 50px;
+  
+}
+.icon .iconic{
+    transition:0.5s;
+}
+.iconic:hover{
+    color:blue;
+    font-size: 45px;
+}
+#box1 input{
+    background-color: black;
+    color: aliceblue;
+    border: 0px;
+    height: 40px;
+}
+#box2 input {
+   height: 42px;
+   width: 60px;
+   transition: 0.5s;
+   
+}
+#box2 input:hover{
+    background-color:blue;
+}
+.display1{
+   display: flex;
+  
+   padding-top: 60px;
+   flex-direction: row;
+}

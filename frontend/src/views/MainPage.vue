@@ -1,58 +1,20 @@
 <script>
-import authApi from "@/apis/auth";
 export default {
   data() {
     return {
-      signInLogout: "sign-out",
     };
   },
-  async mounted() {
-    const me = await authApi.getMe();
-    if (!me) {
-      this.signInLogout= "sign-in";
-    }
-    
-  },
-  methods: {
-    async onLogout() {
-      const me = await authApi.getMe();
-      if (!me) {
-        this.$router.push({name: "login"});
-      } else {
-        await authApi.logout();
-        this.signInLogout= "sign-in";
-      }
-    },
-  }
 }
 </script>
 
 <template>
     <head>
-        <title>Main page</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-
     </head>
     <body>
     <!--Home page-->
         <section>
         <div class="banner">
-            <div class="navbar">
-                <div class="logo">    
-                    <h1 style="font-family:Cinzel Decorative; margin-left: 10px;">Arts</h1>
-                </div>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">View</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
-                    <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
-                </ul>
-            </div>
             <div class="content">
                 <h1>SHARE YOUR ARTWORKS</h1>
                 <div>
@@ -84,7 +46,7 @@ export default {
         
                 <div class="box">
                     <div class="image"> 
-                        <img src="../assets/Images/plant.jpg" alt="">
+                        <img class="imgMainPage" src="../assets/Images/mainpage/plant.jpg" alt="">
                     </div>
                     <div class="content-view">
                         <h3>Plant</h3>
@@ -93,7 +55,7 @@ export default {
         
                 <div class="box" >
                     <div class="image">
-                        <img src="../assets/Images/art.jpg" alt="">
+                        <img class="imgMainPage" src="../assets/Images/mainpage/art.jpg" alt="">
                     </div>
                     <div class="content-view">
                         <h3>Art</h3>
@@ -102,7 +64,7 @@ export default {
         
                 <div class="box">
                     <div class="image">
-                        <img src="../assets/Images/wall.jpg
+                        <img class="imgMainPage" src="../assets/Images/mainpage/wall.jpg
                         " alt="">
                     </div>
                     <div class="content-view">
@@ -122,7 +84,7 @@ export default {
         
                 <div class="box">
                     <div class="image"> 
-                        <img src="../assets/Images/black.png" alt="">
+                        <img class="imgMainPage" src="../assets/Images/mainpage/black.png" alt="">
                     </div>
                     <div class="content-view">
                         <h3>Website</h3>
@@ -131,7 +93,7 @@ export default {
         
                 <div class="box" >
                     <div class="image">
-                        <img src="../assets/Images/logo.png" alt="">
+                        <img  class="imgMainPage" src="../assets/Images/mainpage/logo.png" alt="">
                     </div>
                     <div class="content-view">
                         <h3>Logo Maker</h3>
@@ -140,7 +102,7 @@ export default {
         
                 <div class="box">
                     <div class="image">
-                        <img src="../assets/Images/squid.png" alt="">
+                        <img class="imgMainPage" src="../assets/Images/mainpage/squid.png" alt="">
                     </div>
                     <div class="content-view">
                         <h3>Squid Game</h3>
@@ -161,108 +123,19 @@ export default {
         </div>
 
     </section>
-
-    <!--Footer-->
-    <section>
-       <!--- <div class="footer">
-            <h4>Contact</h4>
-            <ul>
-                <li><a class="fa-solid fa-phone"></a>&nbsp;&nbsp;0123456789</li>
-                <li><a class="fa-solid fa-envelope"></a>&nbsp;&nbsp;arts@gmail.com</li>
-            </ul>
-
-        </div>-->
-        <div class="footer">
-            <div class="display">
-                <div>
-                    <p class="footerTitle">Contact</p>
-                        <font-awesome-icon :icon="['fas', 'phone']"/>
-                        <span> 089705730</span>
-                    <div style="padding-top:20px;">
-                        <font-awesome-icon :icon="['fas', 'envelope']"/>
-                        <span> arts@gmail.com</span>
-                    </div>
-                </div>
-                <div>
-                    <p class="footerTitle">Social media</p>
-                    <div class="icon" >
-                        <a class="socialMediaIcons" href="https://web.facebook.com/itckh?_rdc=1&_rdr"><font-awesome-icon :icon="['fab', 'facebook']" /></a>
-                        <a class="socialMediaIcons" href="https://www.instagram.com/explore/tags/angkorwat/?hl=fr"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
-                        <a class="socialMediaIcons" href="https://twitter.com/INSA_Rennes"><font-awesome-icon :icon="['fab', 'twitter']" /></a>
-                       </div>
-                </div>
-               <div>
-                <p class="footerTitle">Stay in touch!</p>
-                    <div class="display1">
-                        <div id="box1">
-                            <input type="text" value="E-mail">
-                            
-                        </div>
-                        <div id="box2">
-                            <input id="sendButtonFooter" type="button" value="send">
-                        </div>
-                    </div>
-               </div>
-                
-            </div>
-        </div>
-    </section>
     </body>
 </template>
 
-<style>
-*{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
+<style scoped>
+
 .banner{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.74),rgba(0,0,0,0.75)),url(../assets/Images/background.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.74),rgba(0,0,0,0.75)),url(../assets/Images/mainpage/background.jpg);
     background-size: cover;
     background-position: center;
 }
-.navbar{
-    background-color: rgb(2, 51, 51);
-    width: 100%;
-    margin: auto;
-    padding: 35px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-}
-.logo{
-    width: 120px;
-    color: white;
-    cursor: pointer;
-}
-.navbar ul li{
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
-    position: relative;
-}
-.navbar ul li a{
-    text-decoration: solid;
-    color: white;
-}
-.navbar ul li::after{
-    content: '';
-    height: 3px;
-    width: 0;
-    background:blue;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    transition: 0.5s;
 
-}
-.navbar ul li:hover::after{
-    width: 100%;
-
-}
 .content{
     width: 100%;
     position: absolute;
@@ -374,17 +247,6 @@ html {
 /*-- View --*/
 
 
-
-/* *{
-  font-family: 'Poppins', sans-serif;
-  margin:0; padding:0;
-  box-sizing: border-box;
-  outline: none; border:none;
-  text-transform: capitalize;
-  text-decoration: none;
-  transition: .2s linear;
-} */
-
 .container .heading{
   text-align: center;
   padding:10px;
@@ -481,7 +343,7 @@ html {
 .contact{
     margin: 100px auto;
     width: 80%;
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../assets/Images/banner.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../assets/Images/mainpage/banner.jpg);
     background-size: cover;
     text-align: center;
     padding: 100px 0;
@@ -492,79 +354,12 @@ html {
     padding:0;
 
 }
-/* Footer */
-.footer{   
-    width: 100%;
-    height: 130px;
-    margin-top: 20px;
-    background-color: rgb(66, 63, 63);
-    color:aliceblue; 
-    opacity: 0.8;  
-}
-.display{
-display: flex;
-justify-content: space-between;
-padding-top: 20px;
-padding-left: 30px;
-padding-right: 30px;
-}
 
-.icon a{
-   color: aliceblue;
-   text-decoration: none;
-    font-size: 40px;
-}
-img{
+.imgMainPage{
   width: 20px;
   height: 20px;
   color: aliceblue;
   text-decoration: none;
-}
-.icon{
-   padding-top: 5px;
-}
-#box1 input{
-    margin-top: 0.15em;
-    border-radius: 0.5em;
-    background-color: black;
-    color: aliceblue;
-    height: 30px;
-}
-#box2 input {
-   height: 35px;
-}
-.display1{
-   display: flex;
-   padding-top: 20px;
-   flex-direction: row;
-}
-
-.menuLogout{
-  color: white;
-}
-
-.socialMediaIcons{
-  margin-right: 10px;
-}
-
-.contactLogo{
-  margin-top: 5px;
-}
-
-.footerTitle{
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-#sendButtonFooter{
-  border-radius: 0.5em;
-  border-color: white;
-  color: black;
-  background-color: white;
-  border-width: 0.5em;
-  border-style: solid;
-  padding: 1px;
 }
 
 </style>

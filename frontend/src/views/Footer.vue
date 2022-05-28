@@ -1,0 +1,106 @@
+<template>
+    <section>
+        <div class="footer">
+            <div class="display">
+                <div>
+                    <p class="footerTitle">Contact</p>
+                        <font-awesome-icon :icon="['fas', 'phone']"/>
+                        <span> 089705730</span>
+                    <div class="emailFooter">
+                        <font-awesome-icon :icon="['fas', 'envelope']"/>
+                        <span> arts@gmail.com</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="footerTitle">Social media</p>
+                    <div class="icon" >
+                        <a class="socialMediaIcons" href="https://web.facebook.com/itckh?_rdc=1&_rdr"><font-awesome-icon :icon="['fab', 'facebook']" /></a>
+                        <a class="socialMediaIcons" href="https://www.instagram.com/explore/tags/angkorwat/?hl=fr"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
+                        <a class="socialMediaIcons" href="https://twitter.com/INSA_Rennes"><font-awesome-icon :icon="['fab', 'twitter']" /></a>
+                       </div>
+                </div>
+               <div>
+                <p class="footerTitle">Stay in touch!</p>
+                    <div class="display1">
+                        <div id="box1">
+                            <input type="text" value="E-mail">
+                            
+                        </div>
+                        <div id="box2">
+                            <input id="sendButtonFooter" type="button" value="send">
+                        </div>
+                    </div>
+               </div>
+                
+            </div>
+        </div>
+    </section>
+</template>
+
+<style scoped>
+.footer{   
+    width: 100%;
+    height: 120px;
+    background-color: rgb(66, 63, 63);
+    color:aliceblue; 
+    opacity: 0.8;  
+    bottom: 0;
+}
+.display{
+display: flex;
+justify-content: space-between;
+padding-top: 20px;
+padding-left: 30px;
+padding-right: 30px;
+}
+
+.icon a{
+   color: aliceblue;
+   text-decoration: none;
+    font-size: 40px;
+}
+.display1{
+   display: flex;
+   padding-top: 20px;
+   flex-direction: row;
+}
+
+.socialMediaIcons{
+  margin-right: 10px;
+}
+
+.footerTitle{
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#sendButtonFooter{
+    width: 50px;
+  border-radius: 0.7em;
+  border-color: grey;
+  color: black;
+  background-color: white;
+  border-width: 0.1em;
+  border-style: solid;
+  padding: 1px;
+}
+
+.icon{
+   padding-top: 1px;
+}
+#box1 input{
+    margin-top: 0.15em;
+    border-radius: 0.5em;
+    background-color: black;
+    color: aliceblue;
+    height: 30px;
+}
+#box2 input {
+   height: 35px;
+}
+
+.emailFooter {
+    padding-top: 10px;
+}
+</style>

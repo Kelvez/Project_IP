@@ -17,7 +17,6 @@ export default {
         submitRegister(){
         this.$http.post('http://localhost:3001/auth/register', this.dataRegister, {withCredentials: true, headers: {"Content-type": "application/json",}})
              .then((res) => {
-                console.log(res.data);
                 if (res.data.success) {
                     this.$router.push({name: "login"});
                 } else {

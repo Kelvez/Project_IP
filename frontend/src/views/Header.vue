@@ -1,0 +1,127 @@
+<script>
+import authApi from "@/apis/auth";
+export default {
+  data() {
+    return {
+      signInLogout: "sign-out",
+      heightBanner: "0",
+      backgroundBanner: "",
+    };
+  },
+  async mounted() {
+    const me = await authApi.getMe();
+    if (!me) {
+      this.signInLogout= "sign-in";
+    }
+    
+  },
+  methods: {
+    async onLogout() {
+      const me = await authApi.getMe();
+      if (!me) {
+        this.$router.push({name: "login"});
+      } else {
+        await authApi.logout();
+        this.signInLogout= "sign-in";
+      }
+    },
+  }
+}
+</script>
+
+<template>
+  <section class="header">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    </head>
+    <div class="navbar">
+        <div class="logo">
+          <a href="/">
+            <img class="logoHeader" src="../assets/Images/artsLogo.png">
+          </a>
+          <a href="/" class="artsHeader">Arts</a>
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="#">View</a></li>
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
+            <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
+            <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
+        </ul>
+    </div>
+  </section>
+</template> 
+
+<style scoped>
+.header {
+    height: 320px;
+    background-image: linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url(../assets/Images/mainpage/background.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.navbar{
+    /* background-color: rgb(2, 51, 51, 0.9); */
+    width: 100%;
+    /* margin: auto; */
+    padding-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #fff;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a{
+    text-decoration: solid;
+    color: white;
+    font-size: 18px;
+}
+.navbar ul li::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #f44336;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: 0.5s;
+
+}
+.navbar ul li:hover::after{
+    width: 100%;
+
+}
+
+.menuLogout{
+  color: white;
+}
+
+.artsHeader {
+  font-family:Cinzel Decorative; 
+  margin-left: 3.5em;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  margin-top: 0;
+  text-decoration: none;
+}
+
+.logoHeader {
+  position: absolute;
+  height: 100px;
+  margin-top: -15px;
+
+}
+</style>
