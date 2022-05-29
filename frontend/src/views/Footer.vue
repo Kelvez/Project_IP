@@ -5,10 +5,10 @@
                 <div>
                     <p class="footerTitle">Contact</p>
                         <font-awesome-icon :icon="['fas', 'phone']"/>
-                        <span> 089705730</span>
+                        <a href="tel:1-212-555-5555"> (+855) 012 828 278 </a>
                     <div class="emailFooter">
                         <font-awesome-icon :icon="['fas', 'envelope']"/>
-                        <span> arts@gmail.com</span>
+                        <a href="mailto:#"> arts.sharing.itc@gmail.com</a>
                     </div>
                 </div>
                 <div>
@@ -23,7 +23,7 @@
                 <p class="footerTitle">Stay in touch!</p>
                     <div class="display1">
                         <div id="box1">
-                            <input type="text" value="E-mail">
+                            <input type="text" placeholder="E-mail">
                             
                         </div>
                         <div id="box2">
@@ -47,16 +47,21 @@
     bottom: 0;
 }
 .display{
-display: flex;
-justify-content: space-between;
-padding-top: 20px;
-padding-left: 30px;
-padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.display a {
+    color: white;
+    text-decoration: none;
 }
 
 .icon a{
-   color: aliceblue;
-   text-decoration: none;
+    color: aliceblue;
+    text-decoration: none;
     font-size: 40px;
 }
 .display1{
@@ -76,6 +81,7 @@ padding-right: 30px;
 }
 
 #sendButtonFooter{
+    margin-left: 3px;
     width: 50px;
   border-radius: 0.7em;
   border-color: grey;
@@ -96,6 +102,11 @@ padding-right: 30px;
     color: aliceblue;
     height: 30px;
 }
+
+#box1 input::placeholder{
+    color: white;
+}
+
 #box2 input {
    height: 35px;
 }

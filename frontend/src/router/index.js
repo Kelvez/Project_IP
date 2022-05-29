@@ -3,6 +3,7 @@ import LoginViewVue from '../views/Login.vue'
 import ForgotPassView from '../views/ForgotPass.vue'
 import MainPageView from '../views/MainPage.vue'
 import About from '../views/About.vue'
+import Contact from '../views/Contact.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
     }
   ]
 })

@@ -4,16 +4,24 @@ export default {
   data() {
     return {
       signInLogout: "sign-out",
-      heightBanner: "0",
-      backgroundBanner: "",
+      backgroundBanner: 'linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url("src/assets/Images/',
     };
   },
   async mounted() {
+    if (this.$route.name == "about") {
+      document.getElementsByClassName("header")[0].style.height="320px";
+      document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
+    } else if (this.$route.name == "contact") {
+      document.getElementsByClassName("header")[0].style.height="320px";
+      document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
+    } else {
+      document.getElementsByClassName("header")[0].style.height="0px";
+      document.getElementsByClassName("header")[0].style.backgroundImage="";
+    }
     const me = await authApi.getMe();
     if (!me) {
       this.signInLogout= "sign-in";
     }
-    
   },
   methods: {
     async onLogout() {
@@ -46,7 +54,7 @@ export default {
             <li><a href="about">About</a></li>
             <li><a href="#">View</a></li>
             <li><a href="#">Category</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="contact">Contact</a></li>
             <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
             <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
@@ -61,10 +69,11 @@ export default {
     background-image: linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url(../assets/Images/mainpage/background.jpg);
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 .navbar{
-    /* background-color: rgb(2, 51, 51, 0.9); */
+    /* background-color: rgb(0, 0, 0, 0.4); */
     width: 100%;
     /* margin: auto; */
     padding-top: 40px;
@@ -84,7 +93,7 @@ export default {
     position: relative;
 }
 .navbar ul li a{
-    text-decoration: solid;
+      text-decoration: solid;
     color: white;
     font-size: 18px;
 }

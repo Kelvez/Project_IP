@@ -36,7 +36,6 @@ section {
 
 /*space for write code*/
 .empty{
-    margin-top: 200px;
     width:100%;
     height:100%;
     
