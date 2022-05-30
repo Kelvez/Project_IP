@@ -26,10 +26,10 @@ const findAll = async () => {
     }
 }
 
-const create = async (path, name, desc) => {
+const create = async (image, name, desc) => {
     try {
         const newArt = {
-            path, 
+            image, 
             name, 
             desc
         }
@@ -38,8 +38,8 @@ const create = async (path, name, desc) => {
 
         return {
             success: true,
-            data: createdArt
-        }
+            // data: createdArt
+        }  //We do not return the data because it contains an image and it's a lt of data to send
     } catch (err) {
         return {
             success: false,
@@ -48,9 +48,9 @@ const create = async (path, name, desc) => {
     }
 }
 
-const update = async (id, path, name, desc) => {
+const update = async (id, image, name, desc) => {
     try {
-        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"path": path, "name": name, "desc": desc}});
+        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"image": image, "name": name, "desc": desc}});
         if (updateArt) {
             return {success: true, data: updateArt};
         } else {

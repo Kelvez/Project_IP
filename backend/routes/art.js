@@ -1,12 +1,29 @@
 const express = require('express');
 const auth = require("../middlewares/auth");
 const artService = require("../services/art");
-var router = express.Router();
+const multer = require('multer');
 
-router.post('/create', auth.ensureSignedIn, async (req, res) => {
-    const { path, name, desc } = req.body;
-    const result = await artService.create(path, name, desc);
+var router = express.Router();
+const upload = multer({
+    // dest: 'artsUploaded',
+    limits: {
+        fileSize: 10000000, //10 Mo
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(png|jpg|jpeg)$/)){
+            cb(new Error('Please upload an image (png, jpg or jpeg)'))
+        }
+        cb(undefined, true)
+    }
+});
+
+router.post('/create', upload.single('upload'), async (req,res) => {
+    const { name, desc } = req.body;
+    const image = req.file.buffer;
+    const result = await artService.create(image, name, desc);
     res.json(result);
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message});
 })
 
 router.get('/all', async (req, res) => {

@@ -44,7 +44,7 @@
     background-color: rgb(66, 63, 63);
     color:aliceblue; 
     opacity: 0.8;  
-    bottom: 0;
+    position: bottom;
 }
 .display{
     display: flex;

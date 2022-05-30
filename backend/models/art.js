@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var artSchema = new mongoose.Schema({
-    path: {
-        type: String,
+    image: {
+        type: Buffer,
         required: true
     },
     name: {

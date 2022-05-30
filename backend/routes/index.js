@@ -3,6 +3,6 @@ var router = express.Router();
 
 router.use('/auth', require('./auth'));
 router.use('/user', require('./user'));
-router.use('/item', require('./art'));
+router.use('/arts', require('./art'));
 
 module.exports = router;
