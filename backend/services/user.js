@@ -14,10 +14,24 @@ const findById = async (id) => {
     }
 }
 
-const update = async (id, email, username, firstName, lastName, occupation, aboutMeTitle, abouteMeDesc, imageProfil) => {
+const update = async (id, email, username, firstName, lastName, occupation, aboutMeTitle, aboutMeDesc, ) => {
     try {
-        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"email": email, "username": username, "firstName": firstName,
-         "lastName": lastName, "occupation": occupation, "aboutMeTitle": aboutMeTitle, "abouteMeDesc": abouteMeDesc, "imageProfil": imageProfil}});
+        const updateArt = await Users.updateOne({"_id": id}, {$set: {"email": email, "username": username, "firstName": firstName,
+         "lastName": lastName, "occupation": occupation, "aboutMeTitle": aboutMeTitle, "aboutMeDesc": aboutMeDesc}});
+        console.log("update function in userService");
+        if (updateArt) {
+            return {success: true, data: updateArt};
+        } else {
+            return {success: false, error: "Failed to update"};
+        }
+    } catch (err) {
+        return {success: false, error: err};
+    }
+}
+
+const updateImage = async (id, imageProfil) => {
+    try {
+        const updateArt = await Users.updateOne({"_id": id}, {$set: {"imageProfil": imageProfil}});
         if (updateArt) {
             return {success: true, data: updateArt};
         } else {
@@ -87,5 +101,7 @@ module.exports = {
     getUsers,
     deleteById,
     updatePassword,
-    updateUsername
+    updateUsername,
+    update,
+    updateImage
 }

@@ -37,10 +37,18 @@ router.post('/update-user', auth.ensureSignedIn, auth.currentUser, async (req, r
   res.json(updatedUsername);
 })
 
-router.put('/update', auth.currentUser, auth.ensureSignedIn, upload.single('upload'), async (req, res, next) => {
-  const { _id, email, username, firstName, lastName, occupation, aboutMeTitle, abouteMeDesc} = req.body;
+router.put('/update', auth.currentUser, auth.ensureSignedIn, async (req, res, next) => {
+  const { email, username, firstName, lastName, occupation, aboutMeTitle, aboutMeDesc} = req.body;
+  const { currentUser } = req;
+  console.log("/user/update");
+  const result = await userService.update(currentUser?._id, email, username, firstName, lastName, occupation, aboutMeTitle, aboutMeDesc);
+  res.json(result);
+})
+
+router.put('/update-image', auth.currentUser, auth.ensureSignedIn, upload.single('upload'), async (req, res, next) => {
   const imageProfil = req.file.buffer;
-  const result = await userService.update(_id, email, username, firstName, lastName, occupation, aboutMeTitle, abouteMeDesc, imageProfil);
+  const { currentUser } = req;
+  const result = await userService.updateImage(currentUser?._id, imageProfil);
   res.json(result);
 })
 

@@ -44,13 +44,13 @@
                         <form>
                             <h2>Send Message</h2>
                             <div class="inputBox" >
-                                <input type="text" name="" required="required" placeholder="Full Name"/>
+                                <input type="text" name="" required=true placeholder="Full Name"/>
                             </div>
                             <div class="inputBox">
-                                <input type="text" name="" required="required" placeholder="Email"/>
+                                <input type="text" name="" required=true placeholder="Email"/>
                             </div>
                             <div class="inputBox">
-                                <textarea required="required" placeholder="Type your Message..."></textarea>
+                                <textarea required=true placeholder="Type your Message..."></textarea>
                             </div>
                             <div class="inputBox">
                                 <input type="submit" name="" value="Send" />

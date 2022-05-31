@@ -3,7 +3,7 @@ import authApi from "@/apis/auth";
 export default {
   data() {
     return {
-      isLogged: "false",
+      isLogged: false,
       signInLogout: "sign-out",
       backgroundBanner: 'linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url("src/assets/Images/',
     };
@@ -12,7 +12,7 @@ export default {
     if (this.$route.name == "about") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
-    } else if (this.$route.name == "contact") {
+    } else if (this.$route.name == "contact" || this.$route.name == "profile") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
     } else {
@@ -60,7 +60,8 @@ export default {
             <li><a href="#">Category</a></li>
             <li><a href="contact">Contact</a></li>
             <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
-            <li v-if="this.isLogged"><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
+            <li v-if="isLogged"><a href="profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
+            <!-- <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li> -->
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
         </ul>
     </div>

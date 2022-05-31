@@ -6,6 +6,7 @@ import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 import Register from '../views/Register.vue'
 import Store from '../views/Store.vue'
+import Profile from '../views/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,11 @@ const router = createRouter({
       path: '/store',
       name: 'store',
       component: Store
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })
