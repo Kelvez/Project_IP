@@ -34,7 +34,7 @@ export default {
       } else {
         await authApi.logout();
         this.signInLogout= "sign-in";
-        this.isLogged = false;
+        this.isLogged = false; 
       }
     },
   }
