@@ -23,7 +23,7 @@ const findAll = async () => {
         }
     } catch (err) {
         return {success: false, error: err};
-    }
+    } 
 }
 
 const create = async (image, name, user, desc) => {
