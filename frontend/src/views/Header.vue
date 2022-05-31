@@ -3,6 +3,7 @@ import authApi from "@/apis/auth";
 export default {
   data() {
     return {
+      isLogged: "false",
       signInLogout: "sign-out",
       backgroundBanner: 'linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url("src/assets/Images/',
     };
@@ -21,6 +22,8 @@ export default {
     const me = await authApi.getMe();
     if (!me) {
       this.signInLogout= "sign-in";
+    } else {
+      this.isLogged = true;
     }
   },
   methods: {
@@ -31,6 +34,7 @@ export default {
       } else {
         await authApi.logout();
         this.signInLogout= "sign-in";
+        this.isLogged = false;
       }
     },
   }
@@ -56,7 +60,7 @@ export default {
             <li><a href="#">Category</a></li>
             <li><a href="contact">Contact</a></li>
             <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
-            <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
+            <li v-if="this.isLogged"><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
         </ul>
     </div>

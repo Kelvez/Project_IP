@@ -17,6 +17,24 @@ var userSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    occupation: {
+        type: String
+    },
+    aboutMeTitle: {
+        type: String
+    },
+    aboutMeDesc: {
+        type: String
+    },
+    imageProfil: {
+        type: Buffer
+    },
     password: {
         type: String,
         required: true

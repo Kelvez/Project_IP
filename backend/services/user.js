@@ -14,6 +14,20 @@ const findById = async (id) => {
     }
 }
 
+const update = async (id, email, username, firstName, lastName, occupation, aboutMeTitle, abouteMeDesc, imageProfil) => {
+    try {
+        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"email": email, "username": username, "firstName": firstName,
+         "lastName": lastName, "occupation": occupation, "aboutMeTitle": aboutMeTitle, "abouteMeDesc": abouteMeDesc, "imageProfil": imageProfil}});
+        if (updateArt) {
+            return {success: true, data: updateArt};
+        } else {
+            return {success: false, error: "Failed to update"};
+        }
+    } catch (err) {
+        return {success: false, error: err};
+    }
+}
+
 const deleteById = async (id) => {
     try {
         const retDelete = await Users.deleteOne({"_id": id});

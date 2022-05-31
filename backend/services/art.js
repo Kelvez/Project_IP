@@ -26,11 +26,12 @@ const findAll = async () => {
     }
 }
 
-const create = async (image, name, desc) => {
+const create = async (image, name, user, desc) => {
     try {
         const newArt = {
             image, 
             name, 
+            // user,
             desc
         }
 
@@ -48,9 +49,9 @@ const create = async (image, name, desc) => {
     }
 }
 
-const update = async (id, image, name, desc) => {
+const update = async (id, name, desc) => {
     try {
-        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"image": image, "name": name, "desc": desc}});
+        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"name": name, "user": user, "desc": desc}});
         if (updateArt) {
             return {success: true, data: updateArt};
         } else {

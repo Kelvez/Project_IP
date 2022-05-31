@@ -17,6 +17,15 @@ const upload = multer({
     }
 });
 
+// router.post('/create', upload.single('upload'), async (req,res) => {
+//     const { name, user, desc } = req.body;
+//     const image = req.file.buffer;
+//     const result = await artService.create(image, name, user, desc);
+//     res.json(result);
+// }, (error, req, res, next) => {
+//     res.status(400).send({error: error.message});
+// })
+
 router.post('/create', upload.single('upload'), async (req,res) => {
     const { name, desc } = req.body;
     const image = req.file.buffer;
@@ -33,7 +42,7 @@ router.get('/all', async (req, res) => {
   
 router.put('/update', auth.ensureSignedIn, async (req, res, next) => {
     const { _id, path, name, desc } = req.body;
-    const result = await artService.update(_id, path, name, desc);
+    const result = await artService.update(_id, image, name, user, desc);
     res.json(result);
 })
 
