@@ -36,6 +36,7 @@ export default {
         this.signInLogout= "sign-in";
         this.isLogged = false; 
         this.$router.push({name: "main"});
+        document.getElementsByClassName("header")[0].style.height="0px";
         document.getElementsByClassName("header")[0].style.backgroundImage="";
       }
     },
