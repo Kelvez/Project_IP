@@ -27,7 +27,7 @@ const update = async (id, email, username, firstName, lastName, occupation, abou
     } catch (err) {
         return {success: false, error: err};
     }
-} 
+}
 
 const updateImage = async (id, imageProfil) => {
     try {
