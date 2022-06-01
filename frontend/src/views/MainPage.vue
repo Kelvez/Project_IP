@@ -18,7 +18,7 @@ export default {
             <div class="content">
                 <h1>SHARE YOUR ARTWORKS</h1>
                 <div>
-                    <button class="mainPageButton" type="button"><span></span>GET STARTED</button>
+                    <button class="mainPageButton" type="button">GET STARTED</button>
                 </div>
             </div>
         </div>

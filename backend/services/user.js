@@ -18,7 +18,6 @@ const update = async (id, email, username, firstName, lastName, occupation, abou
     try {
         const updateArt = await Users.updateOne({"_id": id}, {$set: {"email": email, "username": username, "firstName": firstName,
          "lastName": lastName, "occupation": occupation, "aboutMeTitle": aboutMeTitle, "aboutMeDesc": aboutMeDesc}});
-        console.log("update function in userService");
         if (updateArt) {
             return {success: true, data: updateArt};
         } else {

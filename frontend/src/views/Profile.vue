@@ -14,6 +14,8 @@ export default {
         },
         profilPic: null,
         error: '',
+        successMsgImage: '',
+        successMsgUpdate: '',
         }
     },
     async mounted() {
@@ -41,6 +43,10 @@ export default {
                 this.error = updatedUser.data.error;
             } else {
                 this.error = '';
+                this.successMsgUpdate = 'Informations successfully updated';
+                document.getElementById('successMsgUpdate').style.opacity = 1
+                setTimeout(this.successMsgDisapear, 5000);
+                setTimeout(this.successMsgReset, 6000);
             }
         },
         async submitNewProfilPic(event){
@@ -56,9 +62,21 @@ export default {
                     const me = await authApi.getMe();
                     let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
                     this.profilPic= 'data:image/png;base64,' + imageImported
+                    this.successMsgImage = 'Profile picture successfully updated';
+                    document.getElementById('successMsgImage').style.opacity = 1
+                    setTimeout(this.successMsgDisapear, 5000);
+                    setTimeout(this.successMsgReset, 6000);
                 }
             }
         },
+        successMsgDisapear() {
+            document.getElementById('successMsgImage').style.opacity = 0;
+            document.getElementById('successMsgUpdate').style.opacity = 0;
+        },
+        successMsgReset () {
+            this.successMsgImage = '';
+            this.successMsgUpdate= '';
+        }
     }
 }
 </script>
@@ -77,7 +95,7 @@ export default {
                     <p>Follower&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p>
                     <p>Following&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10</p>
                 </div>
-                
+                <p id="successMsgImage">{{this.successMsgImage}}</p>
             </div>
             <div class="p-col2">
                 <form method="post" @submit.prevent="submitUpdate">
@@ -122,6 +140,7 @@ export default {
                     </div>
                     <button class="updateButton" type="submit">Update informations</button>
                     <p class="errorMsg">{{error}}</p>
+                    <p id="successMsgUpdate">{{this.successMsgUpdate}}</p>
                 </form>
             </div>
         </div>
@@ -129,6 +148,28 @@ export default {
 </template>
 
 <style scoped>
+#successMsgImage {
+    display: block;
+    font-weight: 600;
+    opacity: 0;
+    text-align: center;
+    color: green;
+    margin-top: 5px;
+    margin-bottom: 0%;
+    transition: 1s;
+}
+
+#successMsgUpdate {
+    display: block;
+    font-weight: 600;
+    opacity: 0;
+    text-align: center;
+    color: green;
+    margin-top: 5px;
+    margin-bottom: 0%;
+    margin-bottom: 20px;
+    transition: 1s;
+}
 
 label {
     color: black;
@@ -143,7 +184,6 @@ label {
     width: 100%;
     height: 40px;
     font-size: 20px; 
-    margin-bottom: 20px;
 }
 
 .buttonUploadImage {
@@ -185,7 +225,7 @@ label {
     margin-bottom:5%;
     padding: 20px 20px;
     box-sizing: border-box;
-    height:550px;
+    height:570px;
     width: 456px;
     margin-right: 100px;
     align-items: center;
