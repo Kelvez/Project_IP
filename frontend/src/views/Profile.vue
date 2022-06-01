@@ -1,6 +1,7 @@
 <script>
 import userApi from "@/apis/user";
 import authApi from "@/apis/auth";
+import artApi from "@/apis/arts";
 export default {
     data() {
         return {
@@ -11,17 +12,25 @@ export default {
             aboutMeTitle: '',
             aboutMeDesc: '',
         },
+        profilPic: null,
         error: '',
         }
     },
     async mounted() {
         const me = await authApi.getMe();
+        console.log(me);
         if (me) {
             this.dataUpdateUser.firstName = me.data.data.firstName;
             this.dataUpdateUser.lastName = me.data.data.lastName;
             this.dataUpdateUser.occupation = me.data.data.occupation;
             this.dataUpdateUser.aboutMeTitle = me.data.data.aboutMeTitle;
             this.dataUpdateUser.aboutMeDesc = me.data.data.aboutMeDesc;
+            if (me.data.data.imageProfil == "" || me.data.data.imageProfil == undefined) {
+                this.profilPic = "src/assets/Images/profile/noProfilePic.webp"
+            } else {
+                let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
+                this.profilPic= 'data:image/png;base64,' + imageImported
+            }
         } 
     },
     methods:{
@@ -30,8 +39,26 @@ export default {
             console.log(updatedUser);
             if (!updatedUser.data.success) {
                 this.error = updatedUser.data.error;
+            } else {
+                this.error = '';
             }
-        }
+        },
+        async submitNewProfilPic(event){
+            if (event.target.files.length === 0) {
+                e.preventDefault();
+                this.error = "No image to upload"
+            } else {
+                const updatedImage = await userApi.updateImage(event.target.files[0]);
+                if (!updatedImage.data.success) {
+                    this.error = updatedUser.data.error;
+                } else {
+                    this.error = '';
+                    const me = await authApi.getMe();
+                    let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
+                    this.profilPic= 'data:image/png;base64,' + imageImported
+                }
+            }
+        },
     }
 }
 </script>
@@ -41,15 +68,15 @@ export default {
      
         <div class="row">
             <div class="p-col1">
-            
-                <!-- <img src="image/Project/people1.png"> -->
+                <img class="imgProfil" :src="profilPic">
                 <font-awesome-icon class="faUpload" :icon="['fas', 'upload']"/>
-                <a href="" >Upload</a>
+                <button class="buttonUploadImage" onclick="document.getElementById('getImage').click()">Change profile picture</button>
+                <input type="file" id="getImage" accept="image/*" placeholder="Upload" @change="submitNewProfilPic" style="display:none"/>
+                <!-- <a href="" >Upload</a> -->
                 <div class="follow">
                     <p>Follower&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p>
                     <p>Following&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10</p>
                 </div>
-                
                 
             </div>
             <div class="p-col2">
@@ -108,7 +135,7 @@ label {
 }
 
 .updateButton {
-    background-color: rgb(20, 199, 199);
+    background-color: #3000aa;
     border-color: grey;
     border-radius: 10px;
     border-style: solid;
@@ -119,8 +146,24 @@ label {
     margin-bottom: 20px;
 }
 
+.buttonUploadImage {
+    width: 150px;
+    border-radius: 8px;
+    margin-left: 10px;
+    background-color: white;
+}
+
 .faUpload {
     color: black;
+    margin-left: 110px;
+    height: 16px;
+}
+
+.imgProfil {
+    height: 400px;
+    width: 400px;
+    margin-top:6px;
+    margin-left: 8px;
 }
 
 .profile{
@@ -142,7 +185,7 @@ label {
     margin-bottom:5%;
     padding: 20px 20px;
     box-sizing: border-box;
-    height:520px;
+    height:550px;
     width: 456px;
     margin-right: 100px;
     align-items: center;
@@ -154,12 +197,7 @@ label {
     box-shadow:0 0 20px 0px rgba(0,0,0,0.1);
 
 }
-.p-col1 img{
-   
-    margin-left:135px;
-    margin-top:44px;
-    border: 0px;
-}
+
 .p-col1 .fa{
     
     display:block;
@@ -172,6 +210,7 @@ label {
 .p-col1 .follow{
     margin-top:30px;
     margin-left:175px;
+    color: black;
 }
 .p-table1{
    
