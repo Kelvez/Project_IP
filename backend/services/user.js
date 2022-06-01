@@ -40,7 +40,7 @@ const updateImage = async (id, imageProfil) => {
     } catch (err) {
         return {success: false, error: err};
     }
-}
+} 
 
 const deleteById = async (id) => {
     try {
