@@ -35,6 +35,7 @@ export default {
         await authApi.logout();
         this.signInLogout= "sign-in";
         this.isLogged = false; 
+        this.$router.push({name: "main"});
       }
     },
   }

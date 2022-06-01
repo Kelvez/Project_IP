@@ -31,7 +31,7 @@ export default {
               <div class="content-about">
                 <h1>About US</h1>
                 <p>Website for artist to share their works</p>
-                <a href="#" class="btn">More</a>
+                <a href="/about" class="btn">More</a>
               </div>
             </div>
           </div>
@@ -117,9 +117,9 @@ export default {
     <section>
         <div class="contact">
             <h1> Sharing experience</h1>
-            <div>
-                <button class="mainPageButton" type="button"><span></span>Contact</button>
-            </div>
+            <a href="/contact">
+                <button class="mainPageButton" type="button">Contact</button>
+            </a>
         </div>
 
     </section>
