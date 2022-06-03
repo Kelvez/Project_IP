@@ -12,7 +12,7 @@ export default {
     if (this.$route.name == "about") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
-    } else if (this.$route.name == "contact" || this.$route.name == "profile") {
+    } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
     } else {

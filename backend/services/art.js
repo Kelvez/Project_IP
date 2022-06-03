@@ -26,12 +26,25 @@ const findAll = async () => {
     } 
 }
 
+const myArts = async (idUser) => {
+    try {
+        const arts = await Arts.find({user: idUser});
+        if (arts) {
+            return {success: true, data: arts};
+        } else {
+            return {success: false, error: "No arts found"};
+        }
+    } catch (err) {
+        return {success: false, error: err};
+    } 
+}
+
 const create = async (image, name, user, desc) => {
     try {
         const newArt = {
             image, 
             name, 
-            // user,
+            user,
             desc
         }
 
@@ -78,6 +91,7 @@ const remove = async (id) => {
 module.exports = {
     findById,
     findAll,
+    myArts,
     create,
     update,
     remove

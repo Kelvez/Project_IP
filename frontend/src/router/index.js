@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginViewVue from '../views/Login.vue'
-import ForgotPassView from '../views/ForgotPass.vue'
-import MainPageView from '../views/MainPage.vue'
+import Login from '../views/Login.vue'
+import ForgotPass from '../views/ForgotPass.vue'
+import MainPage from '../views/MainPage.vue'
 import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 import Register from '../views/Register.vue'
 import Store from '../views/Store.vue'
-import Profile from '../views/Profile.vue'
+import ProfileUpdate from '../views/ProfileUpdate.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,12 +15,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'main',
-      component: MainPageView
+      component: MainPage
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginViewVue
+      component: Login
     },
     {
       path: '/register',
@@ -33,7 +34,7 @@ const router = createRouter({
     {
       path: '/forgotPass',
       name: 'forgotPass',
-      component: ForgotPassView
+      component: ForgotPass
     },
     {
       path: '/about',
@@ -51,9 +52,14 @@ const router = createRouter({
       component: Store
     },
     {
+      path: '/profile-update',
+      name: 'profileUpdate',
+      component: ProfileUpdate
+    },
+    {
       path: '/profile',
       name: 'profile',
-      component: Profile
+      component: ProfileView
     }
   ]
 })
