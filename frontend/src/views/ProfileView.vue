@@ -1,5 +1,5 @@
 <script>
-import userApi from "@/apis/user";
+import likesApi from "@/apis/likes";
 import authApi from "@/apis/auth";
 import artsApi from "@/apis/arts";
 export default {
@@ -61,11 +61,13 @@ export default {
             }
         },
         async showArts() {
-            const myArts = await artsApi.getAll();
+            const myArts = await artsApi.getMyArts();
             this.artsOfUser = myArts.data.data;
             for (let art of this.artsOfUser) {
-                art.image = artsApi.arrayBufferToBase64(art.image.data);
+                art.image = await artsApi.arrayBufferToBase64(art.image.data);
+                art.likes = await likesApi.likesArt(art._id);
             }
+            console.log(this.artsOfUser)
         }
     }
 }
@@ -107,14 +109,14 @@ export default {
             </div> 
             
             <div class="rows">
-                <div v-for="art in this.artsOfUser" class="pics">
+                <div v-for="art in this.artsOfUser" class="pics" :key="art._id">
 
-                    <img class="imgArts" :src="'data:image/png;base64,'+art.image">
+                    <img class="imgArts" :src='"data:image/png;base64," + art.image'>
                     <div class="position">
                         <div class="names">{{art.name}}</div>
                         <div class="views">
-                            <font-awesome-icon :icon="['fas', 'thumbs-up']"/> &nbsp;1k&nbsp;&nbsp;&nbsp;
-                            <font-awesome-icon :icon="['fas', 'eye']"/>&nbsp;188
+                            <font-awesome-icon :icon="['fas', 'thumbs-up']"/> &nbsp;{{art.likes}}&nbsp;&nbsp;&nbsp;
+                            <font-awesome-icon :icon="['fas', 'eye']"/>&nbsp;{{art.views}}
                         </div>
                     </div>
                     <br>

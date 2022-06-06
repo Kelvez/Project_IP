@@ -10,21 +10,12 @@ const upload = multer({
         fileSize: 10000000, //10 Mo
     },
     fileFilter(req, file, cb) {
-        if (!file.originalname.match(/\.(png|jpg|jpeg)$/)){
+        if (!file.originalname.match(/\.(png|jpg|jpeg|PNG|JPG|JPEG)$/)){
             cb(new Error('Please upload an image (png, jpg or jpeg)'))
         }
         cb(undefined, true)
     }
 });
-
-// router.post('/create', upload.single('upload'), async (req,res) => {
-//     const { name, user, desc } = req.body;
-//     const image = req.file.buffer;
-//     const result = await artService.create(image, name, user, desc);
-//     res.json(result);
-// }, (error, req, res, next) => {
-//     res.status(400).send({error: error.message});
-// })
 
 router.post('/create', auth.ensureSignedIn, auth.currentUser, upload.single('upload'), async (req,res) => {
     const { name, desc } = req.body;
@@ -38,14 +29,25 @@ router.post('/create', auth.ensureSignedIn, auth.currentUser, upload.single('upl
 })
 
 router.get('/all', async (req, res) => {
-    console.log("/all");
     const arts = await artService.findAll();
     res.json(arts);
 })
 
+router.post('/plus-view', async (req, res) => {
+    const { id } = req.body;
+    const result = await artService.plusView(id);
+    res.json(result);
+})
+
 router.get('/my-arts', auth.ensureSignedIn, auth.currentUser, async (req, res) => {
     const { currentUser } = req;
-    const result = await artService.myArts(currentUser?._id);
+    const result = await artService.artsOfUser(currentUser?._id);
+    res.json(result);
+})
+
+router.post('/arts-user', async (req, res) => {
+    const { idUser } = req.body;
+    const result = await artService.artsOfUser(idUser);
     res.json(result);
 })
   

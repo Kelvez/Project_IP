@@ -14,7 +14,11 @@ var artSchema = new mongoose.Schema({
         ref: "Users",
         required: true
     },
-    desc: String
+    desc: String,
+    views: {
+        type: Number, 
+        default: 0
+    }
 }, {
     timestamps: true,
 });

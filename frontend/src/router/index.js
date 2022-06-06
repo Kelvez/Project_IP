@@ -5,9 +5,10 @@ import MainPage from '../views/MainPage.vue'
 import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 import Register from '../views/Register.vue'
-import Store from '../views/Store.vue'
+import User from '../views/User.vue'
 import ProfileUpdate from '../views/ProfileUpdate.vue'
 import ProfileView from '../views/ProfileView.vue'
+import Arts from '../views/Arts.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,11 +48,6 @@ const router = createRouter({
       component: Contact
     },
     {
-      path: '/store',
-      name: 'store',
-      component: Store
-    },
-    {
       path: '/profile-update',
       name: 'profileUpdate',
       component: ProfileUpdate
@@ -60,6 +56,16 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: ProfileView
+    },
+    {
+      path: '/arts',
+      name: 'arts',
+      component: Arts
+    },
+    {
+      path: '/user/:id',
+      name: 'user',
+      component: User
     }
   ]
 })

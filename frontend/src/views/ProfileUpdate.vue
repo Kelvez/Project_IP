@@ -20,7 +20,6 @@ export default {
     },
     async mounted() {
         const me = await authApi.getMe();
-        console.log(me);
         if (me) {
             this.dataUpdateUser.firstName = me.data.data.firstName;
             this.dataUpdateUser.lastName = me.data.data.lastName;
@@ -38,7 +37,6 @@ export default {
     methods:{
         async submitUpdate(){
             const updatedUser = await userApi.updateUser(this.dataUpdateUser);
-            console.log(updatedUser);
             if (!updatedUser.data.success) {
                 this.error = updatedUser.data.error;
             } else {
@@ -61,7 +59,7 @@ export default {
                     this.error = '';
                     const me = await authApi.getMe();
                     let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
-                    this.profilPic= 'data:image/png;base64,' + imageImported
+                    this.profilPic= 'data:image/png;base64,' + imageImported;
                     this.successMsgImage = 'Profile picture successfully updated';
                     document.getElementById('successMsgImage').style.opacity = 1
                     setTimeout(this.successMsgDisapear, 5000);

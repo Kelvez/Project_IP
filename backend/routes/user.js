@@ -11,7 +11,7 @@ const upload = multer({
       fileSize: 10000000, //10 Mo
   },
   fileFilter(req, file, cb) {
-      if (!file.originalname.match(/\.(png|jpg|jpeg)$/)){
+      if (!file.originalname.match(/\.(png|jpg|jpeg|PNG|JPG|JPEG)$/)){
           cb(new Error('Please upload an image (png, jpg or jpeg)'))
       }
       cb(undefined, true)
@@ -37,6 +37,12 @@ router.post('/update-user', auth.ensureSignedIn, auth.currentUser, async (req, r
   res.json(updatedUsername);
 })
 
+router.post('/get-user', async (req, res) => {
+  const {idUser} = req.body;
+  const updatedUsername = await userService.findById(idUser);
+  res.json(updatedUsername);
+})
+
 router.put('/update', auth.currentUser, auth.ensureSignedIn, async (req, res, next) => {
   const { email, username, firstName, lastName, occupation, aboutMeTitle, aboutMeDesc} = req.body;
   const { currentUser } = req;
@@ -56,12 +62,6 @@ router.post('/delete-user', auth.ensureSignedIn, auth.currentUser, async (req, r
   const deletedUser = await userService.deleteById(currentUser?._id);
   logout(req.session);
   res.json(deletedUser);
-})
-
-router.get('/:id', auth.ensureSignedIn, auth.currentUser, async (req, res) => {
-  const { id } = req.params;
-  const result = await userService.findById(id);
-  res.json(result);
 })
 
 module.exports = router;

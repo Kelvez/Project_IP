@@ -38,18 +38,20 @@
 </template>
 
 <style scoped>
+
 .footer{   
     width: 100%;
-    height: 120px;
+    height: 110px;
     background-color: rgb(66, 63, 63);
     color:aliceblue; 
     opacity: 0.8;  
-    position: bottom;
+    bottom: 0;
+    
 }
 .display{
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -62,7 +64,9 @@
 .icon a{
     color: aliceblue;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 25px;
+    padding-left: 5px;
+   
 }
 .display1{
    display: flex;
@@ -78,6 +82,7 @@
   text-align: center;
   font-weight: bold;
   font-size: 1.2em;
+  padding-top: 10px;
 }
 
 #sendButtonFooter{
@@ -93,14 +98,14 @@
 }
 
 .icon{
-   padding-top: 1px;
+   padding-top: 10px;
 }
 #box1 input{
     margin-top: 0.15em;
     border-radius: 0.5em;
     background-color: black;
     color: aliceblue;
-    height: 30px;
+    height: 35px;
 }
 
 #box1 input::placeholder{

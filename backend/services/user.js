@@ -3,7 +3,8 @@ const bcrypt = require('bcryptjs');
 
 const findById = async (id) => {
     try {
-        const user = await Users.findById(id);
+        let user = await Users.findById(id);
+        user.password = undefined;
         if (user) {
             return {success: true, data: user};
         } else {

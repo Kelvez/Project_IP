@@ -26,7 +26,7 @@ const findAll = async () => {
     } 
 }
 
-const myArts = async (idUser) => {
+const artsOfUser = async (idUser) => {
     try {
         const arts = await Arts.find({user: idUser});
         if (arts) {
@@ -37,6 +37,21 @@ const myArts = async (idUser) => {
     } catch (err) {
         return {success: false, error: err};
     } 
+}
+
+const plusView = async (id) => {
+    try {
+        const art = await Arts.findById(id);
+        console.log(id)
+        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"views": art.views+1}});
+        if (updateArt) {
+            return {success: true, data: updateArt};
+        } else {
+            return {success: false, error: "Failed to update"};
+        }
+    } catch (err) {
+        return {success: false, error: err};
+    }
 }
 
 const create = async (image, name, user, desc) => {
@@ -91,7 +106,8 @@ const remove = async (id) => {
 module.exports = {
     findById,
     findAll,
-    myArts,
+    artsOfUser,
+    plusView,
     create,
     update,
     remove

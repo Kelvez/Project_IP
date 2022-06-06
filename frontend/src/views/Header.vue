@@ -12,7 +12,7 @@ export default {
     if (this.$route.name == "about") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
-    } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile") {
+    } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile" || this.$route.name == "arts" || this.$route.name == "user") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
     } else {
@@ -46,9 +46,6 @@ export default {
 
 <template>
   <section class="header">
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-    </head>
     <div class="navbar">
         <div class="logo">
           <a href="/">
@@ -58,12 +55,11 @@ export default {
         </div>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="about">About</a></li>
-            <li><a href="#">View</a></li>
-            <li><a href="#">Category</a></li>
-            <li><a href="contact">Contact</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="#">Discover</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
-            <li v-if="isLogged"><a href="profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
+            <li v-if="isLogged"><a href="/profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <!-- <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li> -->
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
         </ul>
@@ -73,7 +69,7 @@ export default {
 
 <style scoped>
 .header {
-    height: 320px;
+    height: 300px;
     background-image: linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url(../assets/Images/mainpage/background.jpg);
     background-position: center;
     background-size: cover;
@@ -84,7 +80,7 @@ export default {
     /* background-color: rgb(0, 0, 0, 0.4); */
     width: 100%;
     /* margin: auto; */
-    padding-top: 40px;
+    padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,6 +88,8 @@ export default {
     z-index: 3;
     padding-bottom: 20px;
     border-bottom: 2px solid #fff;
+    background-color: #fff;
+    position: fixed;
 }
 
 .navbar ul li{
@@ -99,11 +97,13 @@ export default {
     display: inline-block;
     margin: 0 20px;
     position: relative;
+    
 }
 .navbar ul li a{
       text-decoration: solid;
-    color: white;
-    font-size: 18px;
+    color: black;
+    font-size: 2vh;
+    
 }
 .navbar ul li::after{
     content: '';
@@ -122,14 +122,15 @@ export default {
 }
 
 .menuLogout{
-  color: white;
+  color: black;
+  font-size: 2vh;
 }
 
 .artsHeader {
   font-family:Cinzel Decorative; 
   margin-left: 3.5em;
   font-size: 40px;
-  color: white;
+  color: black;
   font-weight: bold;
   margin-top: 0;
   text-decoration: none;
