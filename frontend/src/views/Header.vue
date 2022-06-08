@@ -5,7 +5,7 @@ export default {
     return {
       isLogged: false,
       signInLogout: "sign-out",
-      backgroundBanner: 'linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url("src/assets/Images/',
+      backgroundBanner: 'linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url("/src/assets/Images/',
     };
   },
   async mounted() {
@@ -49,16 +49,16 @@ export default {
     <div class="navbar">
         <div class="logo">
           <a href="/">
-            <img class="logoHeader" src="../assets/Images/artsLogo.png">
+            <img class="logoHeader" src="/src/assets/Images/artsLogo.png">
           </a>
           <a href="/" class="artsHeader">Arts</a>
         </div>
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="#">Discover</a></li>
+            <li><a href="/arts">Discover</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
+            <li v-if="isLogged"><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
             <li v-if="isLogged"><a href="/profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <!-- <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li> -->
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>

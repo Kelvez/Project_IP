@@ -2,6 +2,7 @@
 import userApi from "@/apis/user";
 import authApi from "@/apis/auth";
 import artApi from "@/apis/arts";
+import followApi from "@/apis/follow";
 export default {
     data() {
         return {
@@ -12,6 +13,9 @@ export default {
             aboutMeTitle: '',
             aboutMeDesc: '',
         },
+        username: '',
+        follower: '',
+        following: '',
         profilPic: null,
         error: '',
         successMsgImage: '',
@@ -26,6 +30,9 @@ export default {
             this.dataUpdateUser.occupation = me.data.data.occupation;
             this.dataUpdateUser.aboutMeTitle = me.data.data.aboutMeTitle;
             this.dataUpdateUser.aboutMeDesc = me.data.data.aboutMeDesc;
+            this.username = me.data.data.username;
+            this.follower = await followApi.howManyFollower(me.data.data._id);
+            this.following = await followApi.howManyFollowing(me.data.data._id);
             if (me.data.data.imageProfil == "" || me.data.data.imageProfil == undefined) {
                 this.profilPic = "src/assets/Images/profile/noProfilePic.webp"
             } else {
@@ -88,10 +95,9 @@ export default {
                 <font-awesome-icon class="faUpload" :icon="['fas', 'upload']"/>
                 <button class="buttonUploadImage" onclick="document.getElementById('getImage').click()">Change profile picture</button>
                 <input type="file" id="getImage" accept="image/*" placeholder="Upload" @change="submitNewProfilPic" style="display:none"/>
-                <!-- <a href="" >Upload</a> -->
+                <p class="usernameProfil">{{this.username}}</p>
                 <div class="follow">
-                    <p>Follower&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p>
-                    <p>Following&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10</p>
+                    <p>Follower&nbsp;&nbsp;{{this.follower}}&nbsp;|&nbsp;Following&nbsp;&nbsp;{{this.following}}</p>
                 </div>
                 <p id="successMsgImage">{{this.successMsgImage}}</p>
             </div>
@@ -211,10 +217,8 @@ label {
 .row{
     display:flex;
     justify-content:flex-start;
-     margin-left: 100px;
-     margin-right:100px;
-
-
+    margin-left: 100px;
+    margin-right:100px;
 }
 .p-col1{
    
@@ -246,8 +250,7 @@ label {
     font-size:18px ;   
 }
 .p-col1 .follow{
-    margin-top:30px;
-    margin-left:175px;
+    text-align: center;
     color: black;
 }
 .p-table1{

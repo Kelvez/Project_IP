@@ -26,7 +26,7 @@ export default {
                 art.likes = await likesApi.likesArt(art._id);
                 art.cpt = cpt;
                 let userImage = await userApi.getUser(art.user);
-                if (userImage.data.data.imageProfil.data == "" || userImage.data.data.imageProfil.data == undefined) {
+                if (userImage.data.data.imageProfil == "" || userImage.data.data.imageProfil == undefined) {
                     art.imageProfilUser = "src/assets/Images/profile/noProfilePic.webp"
                 } else {
                     let image = await artsApi.arrayBufferToBase64(userImage.data.data.imageProfil.data);

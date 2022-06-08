@@ -35,8 +35,8 @@ router.post('/is-liked', auth.ensureSignedIn, auth.currentUser, async (req, res)
 
 router.post('/delete', auth.ensureSignedIn, auth.currentUser, async (req, res) => {
     const { idArt, idUser } = req.body;
-    const deletedArt = await likeService.remove(idArt, idUser);
-    res.json(deletedArt);
+    const deletedLike = await likeService.remove(idArt, idUser);
+    res.json(deletedLike);
 })
 
 module.exports = router;

@@ -1,6 +1,7 @@
 <script>
 import likesApi from "@/apis/likes";
 import authApi from "@/apis/auth";
+import followApi from "@/apis/follow";
 import artsApi from "@/apis/arts";
 export default {
     data() {
@@ -9,6 +10,9 @@ export default {
             firstName: '',
             lastName: '',
             aboutMeDesc: '',
+            username: '',
+            follower: '',
+            following: '',
         },
         dataNewArt: {
             image: '',
@@ -26,6 +30,9 @@ export default {
             this.dataUpdateUser.firstName = me.data.data.firstName;
             this.dataUpdateUser.lastName = me.data.data.lastName;
             this.dataUpdateUser.aboutMeDesc = me.data.data.aboutMeDesc;
+            this.dataUpdateUser.username = me.data.data.username;
+            this.dataUpdateUser.follower = await followApi.howManyFollower(me.data.data._id);
+            this.dataUpdateUser.following = await followApi.howManyFollowing(me.data.data._id);
             if (me.data.data.imageProfil == "" || me.data.data.imageProfil == undefined) {
                 this.profilPic = "src/assets/Images/profile/noProfilePic.webp"
             } else {
@@ -84,9 +91,9 @@ export default {
                 <img class="imgProfil" :src="profilPic">
                 <p class="namesProfil">{{this.dataUpdateUser.firstName}} {{this.dataUpdateUser.lastName}}</p>
                 <p class="description">{{this.dataUpdateUser.aboutMeDesc}}</p>
+                <p class="usernameProfil">{{this.dataUpdateUser.username}}</p>
                 <div class="follow">
-                    <p>Follower&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p>
-                    <p>Following&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10</p>
+                    <p>Follower&nbsp;&nbsp;{{this.dataUpdateUser.follower}}&nbsp;|&nbsp;Following&nbsp;&nbsp;{{this.dataUpdateUser.following}}</p>
                 </div>
             </div>
             <button class="buttonNewArt" @click="this.uploadNewArt"> Upload new arts </button>
@@ -206,13 +213,6 @@ label {
     margin-top: -35px;
 }
 
-.namesProfil {
-    font-size: 25px;
-    text-align: center;
-    color: black;
-    font-weight: bold;
-}
-
 .description {
     text-align: center;
     color: grey;
@@ -265,11 +265,6 @@ label {
     margin-top:10px;
    
     font-size:18px ;   
-}
-.p-col1 .follow{
-    margin-top:30px;
-    margin-left:175px;
-    color: black;
 }
 
 h3{
