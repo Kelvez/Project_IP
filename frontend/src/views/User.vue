@@ -33,7 +33,7 @@ export default {
             this.dataUser.follower = await followApi.howManyFollower(user.data.data._id);
             this.dataUser.following = await followApi.howManyFollowing(user.data.data._id);
             if (user.data.data.imageProfil == "" || user.data.data.imageProfil == undefined) {
-                this.profilPic = "src/assets/Images/profile/noProfilePic.webp"
+                this.profilPic = "/src/assets/Images/profile/noProfilePic.webp"
             } else {
                 let imageImported = await artsApi.arrayBufferToBase64(user.data.data.imageProfil.data);
                 this.profilPic= 'data:image/png;base64,' + imageImported

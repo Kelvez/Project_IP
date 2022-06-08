@@ -51,14 +51,26 @@ const createNewArt = async (user, otherUser, newArt) => {
 
 const findNewFollower = async (user, otherUser) => {
     try {
-        console.log('findNewFollower')
-        const follow = await Notifs.find({"user": user, "otherUser": otherUser, "type": 'newFollower'})
-        if (follow) {
-            if (follow.length == 0) {
+        const notif = await Notifs.find({"user": user, "otherUser": otherUser, "type": 'newFollower'})
+        if (notif) {
+            if (notif.length == 0) {
                 return {success: true, data: false};
             } else {
-                return {success: true, data: follow};
+                return {success: true, data: notif};
             }
+        } else {
+            return {success: false, error: "This user has no follow"};
+        }
+    } catch (err) {
+        return {success: false, error: err};
+    }
+}
+
+const get5LastNotifs = async (user) => {
+    try {
+        const notifs = await Notifs.find({"user": user}).sort({createdAt: -1}).limit(5);
+        if (notifs) {
+            return {success: true, data: notifs};
         } else {
             return {success: false, error: "This user has no follow"};
         }
@@ -84,5 +96,6 @@ module.exports = {
     createNewFollower,
     createNewArt,
     findNewFollower,
+    get5LastNotifs,
     deleteById
 }

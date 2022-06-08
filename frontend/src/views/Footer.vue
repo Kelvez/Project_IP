@@ -38,7 +38,6 @@
 </template>
 
 <style scoped>
-
 .footer{   
     width: 100%;
     height: 110px;

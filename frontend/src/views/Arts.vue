@@ -27,7 +27,7 @@ export default {
                 art.cpt = cpt;
                 let userImage = await userApi.getUser(art.user);
                 if (userImage.data.data.imageProfil == "" || userImage.data.data.imageProfil == undefined) {
-                    art.imageProfilUser = "src/assets/Images/profile/noProfilePic.webp"
+                    art.imageProfilUser = "/src/assets/Images/profile/noProfilePic.webp"
                 } else {
                     let image = await artsApi.arrayBufferToBase64(userImage.data.data.imageProfil.data);
                     art.imageProfilUser= 'data:image/png;base64,' + image
@@ -46,6 +46,7 @@ export default {
         async artClicked (art) {
             await artsApi.oneMoreViewOnArt(art._id);
             art.views++;
+            this.$router.push({name: "art", params: {id: art._id}});
         },
         async iLikeButton (art) {
             const me = await authApi.getMe();
@@ -72,7 +73,6 @@ export default {
         async userClicked(user) {
             console.log(user);
             this.$router.push({name: "user", params: {id: user}});
-
         }
     }
 }

@@ -1,8 +1,12 @@
 import axios from "axios";
 
 var arts = {
+    async get(id) {
+        const result = await axios.get('http://localhost:3001/arts/'+id);
+        return result;
+    },
     async getAll() {
-        const result = await axios.get('http://localhost:3001/arts/all', {withCredentials: true, headers: {"Content-type": "application/json",} });
+        const result = await axios.get('http://localhost:3001/arts/all');
         return result;
     },
     async getMyArts() {

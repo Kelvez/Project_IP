@@ -12,12 +12,13 @@ export default {
     if (this.$route.name == "about") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
-    } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile" || this.$route.name == "arts" || this.$route.name == "user") {
+    } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile" 
+            || this.$route.name == "arts" || this.$route.name == "user" || this.$route.name == "testNotif") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
     } else {
-      document.getElementsByClassName("header")[0].style.height="0px";
       document.getElementsByClassName("header")[0].style.backgroundImage="";
+      document.getElementsByClassName("header")[0].style.height="90px";
     }
     const me = await authApi.getMe();
     if (!me) {
@@ -36,8 +37,8 @@ export default {
         this.signInLogout= "sign-in";
         this.isLogged = false; 
         this.$router.push({name: "main"});
-        document.getElementsByClassName("header")[0].style.height="0px";
         document.getElementsByClassName("header")[0].style.backgroundImage="";
+        document.getElementsByClassName("header")[0].style.height="90px";
       }
     },
   }
@@ -58,7 +59,7 @@ export default {
             <li><a href="/about">About</a></li>
             <li><a href="/arts">Discover</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li v-if="isLogged"><a href="#"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
+            <li v-if="isLogged"><a href="/testNotif"><font-awesome-icon :icon="['fas', 'bell']"/></a></li>
             <li v-if="isLogged"><a href="/profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <!-- <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li> -->
             <li><font-awesome-icon class="menuLogout" v-on:click="onLogout()" :icon="['fas', this.signInLogout]" /></li>
@@ -77,9 +78,7 @@ export default {
 }
 
 .navbar{
-    /* background-color: rgb(0, 0, 0, 0.4); */
     width: 100%;
-    /* margin: auto; */
     padding-top: 10px;
     display: flex;
     align-items: center;
@@ -100,7 +99,7 @@ export default {
     
 }
 .navbar ul li a{
-      text-decoration: solid;
+    text-decoration: solid;
     color: black;
     font-size: 2vh;
     
@@ -118,12 +117,12 @@ export default {
 }
 .navbar ul li:hover::after{
     width: 100%;
-
 }
 
 .menuLogout{
   color: black;
   font-size: 2vh;
+  cursor: pointer;
 }
 
 .artsHeader {

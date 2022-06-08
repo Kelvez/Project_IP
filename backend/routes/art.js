@@ -63,7 +63,7 @@ router.delete('/delete/:id', auth.ensureSignedIn, async (req, res, next) => {
     res.json(deletedArt);
 })
 
-router.get('/:id', auth.ensureSignedIn, async (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     const result = await artService.findById(id);
     res.json(result);
