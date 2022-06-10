@@ -67,7 +67,7 @@ const create = async (image, name, user, desc) => {
 
         return {
             success: true,
-            // data: createdArt
+            data: createdArt._id
         }  //We do not return the data because it contains an image and it's a lt of data to send
     } catch (err) {
         return {

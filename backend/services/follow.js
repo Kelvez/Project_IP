@@ -49,6 +49,15 @@ const howManyFollower = async (user) => {
     }
 }
 
+const getFollowersOfUser = async (user) => {
+    try {
+        const follows = await Follows.find({"userFollowed": user});
+        return {success: true, data: follows};
+    } catch (err) {
+        return {success: false, error: err};
+    }
+}
+
 const howManyFollowing = async (user) => {
     try {
         const follows = await Follows.find({"userThatFollows": user});
@@ -96,6 +105,7 @@ module.exports = {
     findById,
     create,
     howManyFollower,
+    getFollowersOfUser,
     howManyFollowing,
     isFollowed,
     remove

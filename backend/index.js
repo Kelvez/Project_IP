@@ -9,6 +9,7 @@ app.use(cors({
   credentials: true
 }))
 
+app.use('/static', express.static('testImage'))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 

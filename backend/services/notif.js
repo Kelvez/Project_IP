@@ -3,8 +3,11 @@ const Notifs = require("../models/notif");
 const createNewFollower = async (user, otherUser) => {
     try {
         const alreadyFollowed = await findNewFollower(user, otherUser);
+        console.log(alreadyFollowed);
         if (alreadyFollowed?.data) {
-            await deleteById(alreadyFollowed.data._id);
+            for (let item of alreadyFollowed.data) {
+                await deleteById(item._id);
+            }
         }
         const newNotif = {
             user, 

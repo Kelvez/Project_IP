@@ -1,6 +1,8 @@
 const express = require('express');
 const auth = require("../middlewares/auth");
 const artService = require("../services/art");
+const followService = require("../services/follow");
+const notifService = require("../services/notif");
 const multer = require('multer');
 
 var router = express.Router();
@@ -23,6 +25,14 @@ router.post('/create', auth.ensureSignedIn, auth.currentUser, upload.single('upl
     const { currentUser } = req;
     const user = currentUser?._id;
     const result = await artService.create(image, name, user, desc);
+    if (result?.success) {
+        const followers = await followService.getFollowersOfUser(user);
+        if (followers?.success) {
+            for (let follower of followers.data) {
+                await notifService.createNewArt(follower.userThatFollows, user, result.data);
+            }
+        }
+    }
     res.json(result);
 }, (error, req, res, next) => {
     res.status(400).send({error: error.message});
