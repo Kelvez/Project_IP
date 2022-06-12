@@ -16,7 +16,7 @@ export default {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
     } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile" 
-            || this.$route.name == "arts" || this.$route.name == "user" || this.$route.name == "testNotif") {
+            || this.$route.name == "arts" || this.$route.name == "user") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
     } else {
@@ -82,6 +82,9 @@ export default {
 </script>
 
 <template>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  </head>
   <div class="notifPage">
     <font-awesome-icon id="closeNotifs" @click="closeNotifs" :icon="['fas', 'xmark']"/>
     <p class="notifTitle">Notifications: </p>
@@ -187,7 +190,7 @@ export default {
 }
 
 .artsHeader {
-  font-family:Cinzel Decorative; 
+  font-family: Cinzel Decorative; 
   margin-left: 3.5em;
   font-size: 40px;
   color: black;

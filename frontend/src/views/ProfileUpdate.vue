@@ -36,8 +36,7 @@ export default {
             if (me.data.data.imageProfil == "" || me.data.data.imageProfil == undefined) {
                 this.profilPic = "/src/assets/Images/profile/noProfilePic.webp"
             } else {
-                let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
-                this.profilPic= 'data:image/png;base64,' + imageImported
+                this.profilPic= 'http://localhost:3001/profileImage/' + me.data.data.imageProfil;
             }
         } 
     },
@@ -65,8 +64,7 @@ export default {
                 } else {
                     this.error = '';
                     const me = await authApi.getMe();
-                    let imageImported = await artApi.arrayBufferToBase64(me.data.data.imageProfil.data);
-                    this.profilPic= 'data:image/png;base64,' + imageImported;
+                    this.profilPic= 'http://localhost:3001/profileImage/' + me.data.data.imageProfil;
                     this.successMsgImage = 'Profile picture successfully updated';
                     document.getElementById('successMsgImage').style.opacity = 1
                     setTimeout(this.successMsgDisapear, 5000);
@@ -180,7 +178,7 @@ label {
 }
 
 .updateButton {
-    background-color: #3000aa;
+    background-color: black;
     border-color: grey;
     border-radius: 10px;
     border-style: solid;
@@ -208,6 +206,7 @@ label {
     width: 400px;
     margin-top:6px;
     margin-left: 8px;
+    object-fit: cover;
 }
 
 .profile{
@@ -217,7 +216,7 @@ label {
 .row{
     display:flex;
     justify-content:flex-start;
-    margin-left: 100px;
+    margin-left: 50px;
     margin-right:100px;
 }
 .p-col1{
@@ -229,7 +228,7 @@ label {
     box-sizing: border-box;
     height:570px;
     width: 456px;
-    margin-right: 100px;
+    margin-right: 50px;
     align-items: center;
    
     transition: 0.5s;

@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Users = require("../models/user");
 const bcrypt = require('bcryptjs');
 
@@ -31,6 +32,17 @@ const update = async (id, email, username, firstName, lastName, occupation, abou
 
 const updateImage = async (id, imageProfil) => {
     try {
+        const user = await Users.findById(id);
+        if (user.imageProfil != undefined && user.imageProfil != "") {
+            const path = "profileImage/" + user.imageProfil;
+            fs.unlink(path, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }    
+                //file removed
+            });
+        }
         const updateArt = await Users.updateOne({"_id": id}, {$set: {"imageProfil": imageProfil}});
         if (updateArt) {
             return {success: true, data: updateArt};
@@ -44,6 +56,17 @@ const updateImage = async (id, imageProfil) => {
 
 const deleteById = async (id) => {
     try {
+        const user = await Users.findById(id);
+        if (user.imageProfil != undefined && user.imageProfil != "") {
+            const path = "profileImage/" + user.imageProfil;
+            fs.unlink(path, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }    
+                //file removed
+            });
+        }
         const retDelete = await Users.deleteOne({"_id": id});
         if (retDelete) {
             return {success: true, data: retDelete};

@@ -23,7 +23,7 @@ export default {
 
 
 <template>
-  <Header v-if="displayHeaderFooter"/>
+  <Header :key="$route.fullPath" v-if="displayHeaderFooter"/>
   <RouterView/>
   <Footer v-if="displayHeaderFooter"/>
 </template>

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var artSchema = new mongoose.Schema({
     image: {
-        type: Buffer,
+        type: String,
         required: true
     },
     name: {

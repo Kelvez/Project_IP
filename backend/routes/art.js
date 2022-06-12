@@ -4,10 +4,11 @@ const artService = require("../services/art");
 const followService = require("../services/follow");
 const notifService = require("../services/notif");
 const multer = require('multer');
+const { processIf } = require('@vue/compiler-core');
 
 var router = express.Router();
 const upload = multer({
-    // dest: 'artsUploaded',
+    dest: 'artsImage',
     limits: {
         fileSize: 10000000, //10 Mo
     },
@@ -16,14 +17,14 @@ const upload = multer({
             cb(new Error('Please upload an image (png, jpg or jpeg)'))
         }
         cb(undefined, true)
-    }
+    },
 });
 
 router.post('/create', auth.ensureSignedIn, auth.currentUser, upload.single('upload'), async (req,res) => {
     const { name, desc } = req.body;
-    const image = req.file.buffer;
     const { currentUser } = req;
     const user = currentUser?._id;
+    const image = req.file.filename;
     const result = await artService.create(image, name, user, desc);
     if (result?.success) {
         const followers = await followService.getFollowersOfUser(user);

@@ -33,7 +33,7 @@ var userSchema = new mongoose.Schema({
         type: String
     },
     imageProfil: {
-        type: Buffer
+        type: String
     },
     password: {
         type: String,

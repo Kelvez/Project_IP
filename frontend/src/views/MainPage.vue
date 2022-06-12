@@ -8,9 +8,6 @@ export default {
 </script>
 
 <template>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-    </head>
     <body>
     <!--Home page-->
         <section>

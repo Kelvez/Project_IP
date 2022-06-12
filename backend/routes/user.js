@@ -6,7 +6,7 @@ const multer = require('multer');
 
 var router = express.Router();
 const upload = multer({
-  // dest: 'artsUploaded',
+  dest: 'profileImage',
   limits: {
       fileSize: 10000000, //10 Mo
   },
@@ -51,7 +51,7 @@ router.put('/update', auth.currentUser, auth.ensureSignedIn, async (req, res, ne
 })
 
 router.put('/update-image', auth.currentUser, auth.ensureSignedIn, upload.single('upload'), async (req, res, next) => {
-  const imageProfil = req.file.buffer;
+  const imageProfil = req.file.filename;
   const { currentUser } = req;
   const result = await userService.updateImage(currentUser?._id, imageProfil);
   res.json(result);

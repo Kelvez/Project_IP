@@ -35,8 +35,7 @@ export default {
             if (user.data.data.imageProfil == "" || user.data.data.imageProfil == undefined) {
                 this.profilPic = "/src/assets/Images/profile/noProfilePic.webp"
             } else {
-                let imageImported = await artsApi.arrayBufferToBase64(user.data.data.imageProfil.data);
-                this.profilPic= 'data:image/png;base64,' + imageImported
+                this.profilPic= 'http://localhost:3001/profileImage/' + user.data.data.imageProfil;
             }
             this.showArts(user.data.data._id);
         }
@@ -56,7 +55,6 @@ export default {
             const arts = await artsApi.getArtsOfUser(idUser);
             this.artsOfUser = arts.data.data;
             for (let art of this.artsOfUser) {
-                art.image = await artsApi.arrayBufferToBase64(art.image.data);
                 art.likes = await likesApi.likesArt(art._id);
             }
         },
@@ -107,7 +105,7 @@ export default {
             </div>
             <div class="rows">
                 <div v-for="art in this.artsOfUser" class="pics" :key="art._id">
-                    <img class="imgArts" :src='"data:image/png;base64," + art.image'>
+                    <img class="imgArts" :src='"http://localhost:3001/artsImage/" + art.image'>
                     <div class="position">
                         <div class="names">{{art.name}}</div>
                         <div class="views">
@@ -231,7 +229,7 @@ h3{
     margin-top: 50px;
     width: fit-content;
     /* background-color:#fff; */
-    /* justify-content: space-between; */
+    justify-content: center;
     /* align-items:flex-start; */
     display:flex;
     /* flex-wrap: wrap; */

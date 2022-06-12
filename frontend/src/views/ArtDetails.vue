@@ -30,8 +30,7 @@ export default {
         const artResp = await artsApi.get(this.$route.params.id);
         if (artResp?.data?.success) {
             this.art= artResp.data.data;
-            let image = await artsApi.arrayBufferToBase64(this.art.image.data);
-            this.art.image = 'data:image/png;base64,' + image;
+            this.art.image = 'http://localhost:3001/artsImage/' + this.art.image;
             this.nbViews = this.art.views;
             this.nbLikes = await likesApi.likesArt(this.art._id);
             const userResp = await userApi.getUser(this.art.user);
@@ -39,8 +38,7 @@ export default {
             if (this.user.imageProfil == "" ||this.user.imageProfil == undefined) {
                 this.user.imageProfil = "/src/assets/Images/profile/noProfilePic.webp"
             } else {
-                image = await artsApi.arrayBufferToBase64(this.user.imageProfil.data);
-                this.user.imageProfil = 'data:image/png;base64,' + image;
+                this.user.imageProfil = 'http://localhost:3001/profileImage/' + this.user.imageProfil;
             }
             this.nbFollow = await followApi.howManyFollower(this.user._id);
         }
@@ -112,10 +110,10 @@ export default {
         <div class="img-detail">
             <div class="user-info">
                 <div class="item">   
-                        <a :href="'/user/'+this.user._id"><img :src="this.user.imageProfil"> </a>
-                        <div>
-                            <a class="linkProfile" :href="'/user/'+this.user._id"><p class="usernameArtDetails">{{this.user.username}}</p></a>
-                        </div>
+                    <a class="linkProfile" :href="'/user/'+this.user._id"><img :src="this.user.imageProfil"> </a>
+                    <div>
+                        <a class="linkProfile" :href="'/user/'+this.user._id"><p class="usernameArtDetails">{{this.user.username}}</p></a>
+                    </div>
                 </div>    
             </div>
 
@@ -129,27 +127,11 @@ export default {
 
                 <div class="user-info2">
                     <div class="follower">
-                        <!-- <div class="user-img">
-                            <img src="image/Project/tree.jpg"  > 
-                        <div class="follower-icon">
-                            <i class="ri-add-circle-fill"></i>
-                        </div>
-                            
-                        </div> -->
                         <div class="iconLayout">
                             <font-awesome-icon id="followIcon" class="iLikeArt" @click="followOrUnfollow" :icon="['fas', 'users']"/>
                             <h5>{{this.follow}}</h5>
                             <p class="nbImpress">{{this.nbFollow}}</p>
-                        </div>
-
-                        <!-- <div class="user-save">
-                            <input type="file" id="file" accept="image/*">
-                            <label for="file"> <i class="ri-folder-open-fill"> </i></label>
-                        
-                            <h5>save</h5>
-                            
-                        </div> -->
-                        
+                        </div>                        
                         <div class="user-like">
                             <div class="iconLayout">
                                 <font-awesome-icon class="iLikeArt" id="likeIcon" @click="iLikeButton" :icon="['fas', 'thumbs-up']"/>
@@ -181,12 +163,6 @@ export default {
 </template>
 
 <style scoped>
-.errorMsg{
-    width: 130%;
-    margin-bottom: 10px;
-    opacity: 0;
-    transition: 0.5s;
-}
 .iconLayout{
     background-color: rgba(0, 0, 0, 0.76);
     padding-right: 25px;
@@ -208,20 +184,35 @@ export default {
 }
 .linkProfile {
     text-decoration: none;
+    z-index: 5;
+}
+
+.images {
+    height: 700px;
 }
 
 .imageArt {
-    width: 130%;
+    width: 100%;
     position: relative;
+    height: fit-content;
+    object-fit: contain;
+    height: 700px;
+
 }
 
 .titleArt {
-    width: 130%;
+    /* width: 130%; */
     /* margin-left: 50%; */
-    /* background-color: white; */
     text-align: center;
     font-size: 35px;
     color: white;
+}
+
+.errorMsg{
+    width: 130%;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: 0.5s;
 }
 .usernameArtDetails{
     font-size: 30px;
@@ -238,63 +229,39 @@ body{
     height: 100%;
 }
 /*header*/
-.detail-image{
-    /* margin-top: 100px; */
-}
 .img-detail{
     width:100%;
 }
 .user-info{
     width: 100%;
-    height: 180px;
+    height: 30px;
     position: relative;
     display:flex;
     justify-content: space-between;
-    margin-top:50px;
-    margin-bottom: -50px;
-
-    
 }
+
 .user-info .item{
     display: flex;
-    margin-left: 150px;
+    margin-left: 50px;
 }
 .user-info img{
-    width:120px;
-    height: 120px;
+    width:70px;
+    height: 70px;
     border-radius: 100%;
+    object-fit: cover;
+    margin-top: 20px;
     transition: 0.5s;
 }
 
-.user-info h1{
-    color: #fff;
-    font-size:22px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-left: 10px;
-    margin-top: 0;
-}
-
 /*middle*/
-.middle-content{
-    width: 100%;
-    height:772px;
-    display:flex;
-   
-    justify-content:space-between;
-}
-.middle-content .images{
-    width: 1063px;
-    height:658px;
-    margin-top: 0;
-    margin-left: 70px;
-}
 .user-info2{
+    position: absolute;
     width: 100px;
     display: flex;
     margin-top: 11%;
-    margin-right: 50px;
+    right: 50px;
     text-align: center;
-    
+    margin-top: -475px;
 }
 
 .follower img{
@@ -368,7 +335,7 @@ input[type="file"]{
 
 .description{
     text-align: center;
-    margin-top: 10%;
+    margin-top: 100px;;
     width: 100%;
     height:200px;
     position: relative;

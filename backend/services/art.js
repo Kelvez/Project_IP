@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Arts = require("../models/art");
 
 const findById = async (id) => {
@@ -68,7 +69,7 @@ const create = async (image, name, user, desc) => {
         return {
             success: true,
             data: createdArt._id
-        }  //We do not return the data because it contains an image and it's a lt of data to send
+        }  
     } catch (err) {
         return {
             success: false,
@@ -79,7 +80,7 @@ const create = async (image, name, user, desc) => {
 
 const update = async (id, name, desc) => {
     try {
-        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"name": name, "user": user, "desc": desc}});
+        const updateArt = await Arts.updateOne({"_id": id}, {$set: {"name": name, "desc": desc}});
         if (updateArt) {
             return {success: true, data: updateArt};
         } else {
@@ -92,6 +93,15 @@ const update = async (id, name, desc) => {
 
 const remove = async (id) => {
     try {
+        const art = await Arts.findById(id);
+        const path = "artsImage/" + art.image;
+        fs.unlink(path, (err) => {
+            if (err) {
+                console.error(err)
+                return
+            }    
+            //file removed
+        });
         const retDelete = await Arts.deleteOne({"_id": id});
         if (retDelete) {
             return {success: true, data: retDelete};

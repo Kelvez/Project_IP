@@ -33,6 +33,14 @@ var arts = {
     async oneMoreViewOnArt(id) {
         const result = await axios.post('http://localhost:3001/arts/plus-view', {id: id});
         return result;
+    },
+    async deleteArt(id) {
+        const result = await axios.delete('http://localhost:3001/arts/delete/'+id, {withCredentials: true, headers: {"Content-type": "application/json",} });
+        return result;
+    },
+    async updateArt(dataUpdate) {
+        const result = await axios.put('http://localhost:3001/arts/update', dataUpdate, {withCredentials: true, headers: {"Content-type": "application/json",} });
+        return result;
     }
 }
 

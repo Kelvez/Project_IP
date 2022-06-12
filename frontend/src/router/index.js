@@ -79,11 +79,6 @@ const router = createRouter({
       path: '/art-update/:id',
       name: 'artUpdate',
       component: ArtUpdateVue
-    },
-    {
-      path: '/testNotif',
-      name: 'testNotif',
-      component: NotifTest
     }
   ]
 })

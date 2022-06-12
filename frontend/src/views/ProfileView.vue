@@ -36,8 +36,7 @@ export default {
             if (me.data.data.imageProfil == "" || me.data.data.imageProfil == undefined) {
                 this.profilPic = "/src/assets/Images/profile/noProfilePic.webp"
             } else {
-                let imageImported = await artsApi.arrayBufferToBase64(me.data.data.imageProfil.data);
-                this.profilPic= 'data:image/png;base64,' + imageImported
+                this.profilPic= 'http://localhost:3001/profileImage/' + me.data.data.imageProfil;
             }
             await this.showArts();  
         }
@@ -71,10 +70,13 @@ export default {
             const myArts = await artsApi.getMyArts();
             this.artsOfUser = myArts.data.data;
             for (let art of this.artsOfUser) {
-                art.image = await artsApi.arrayBufferToBase64(art.image.data);
+                art.image = "http://localhost:3001/artsImage/" + art.image;
                 art.likes = await likesApi.likesArt(art._id);
             }
             console.log(this.artsOfUser)
+        },
+        artClicked(art) {
+            this.$router.push({name: "artUpdate", params: {id: art._id}});
         }
     }
 }
@@ -96,7 +98,10 @@ export default {
                     <p>Follower&nbsp;&nbsp;{{this.dataUpdateUser.follower}}&nbsp;|&nbsp;Following&nbsp;&nbsp;{{this.dataUpdateUser.following}}</p>
                 </div>
             </div>
-            <button class="buttonNewArt" @click="this.uploadNewArt"> Upload new arts </button>
+            <div  class="buttonNewArt"  @click="this.uploadNewArt">
+                <font-awesome-icon class="faUpload" :icon="['fas', 'upload']"/>
+                <p class="pUpload"> Upload new arts </p>
+            </div>
             <div id="newArt">
                 <form method="post" @submit.prevent="submitNewArt">
                     <h2> New Art</h2>
@@ -107,10 +112,12 @@ export default {
                     <input class="inputsNewArt" id="nameNewArt" v-model="dataNewArt.name" type="text" placeholder="Name of the Art">
                     <br>
                     <label>Description: </label>
-                    <input class="inputsNewArt" id="descNewArt" v-model="dataNewArt.desc" type="text" placeholder="Description of the Art">
+                    <textarea class="inputsNewArt" id="descNewArt" v-model="dataNewArt.desc" type="text" placeholder="Description of the Art"></textarea>
                     <br>
-                    <button class="newArtButton" id="uploadNewArtButton" type="submit">Upload</button>
-                    <button class="newArtButton" id="cancelNewArtButton" @click="this.cancelNewArt">Cancel</button>
+                    <div class="buttons">
+                        <button class="newArtButton" id="uploadNewArtButton" type="submit">Upload</button>
+                        <button class="newArtButton" id="cancelNewArtButton" @click="this.cancelNewArt">Cancel</button>
+                    </div>
                     <p class="errorMsg">{{error}}</p>
                 </form>
             </div> 
@@ -118,7 +125,7 @@ export default {
             <div class="rows">
                 <div v-for="art in this.artsOfUser" class="pics" :key="art._id">
 
-                    <img class="imgArts" :src='"data:image/png;base64," + art.image'>
+                    <img class="imgArts" :src='art.image' @click="artClicked(art)">
                     <div class="position">
                         <div class="names">{{art.name}}</div>
                         <div class="views">
@@ -142,8 +149,8 @@ export default {
 
 <style scoped>
 #uploadNewArtButton{
-    margin-left: 90px;
-    background-color: cornflowerblue;
+    background-color: black;
+    color: white
 }
 
 #cancelNewArtButton{
@@ -154,7 +161,14 @@ export default {
 
 .newArtButton {
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 15px;
+    
+}
+
+.buttons{
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 #uploadNewArt {
@@ -189,12 +203,25 @@ h2 {
     position: absolute;
     margin-left: 85%;
     margin-top: 5px;
-    width: 150px;
+    width: 155px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 15px;
-    background-color:cornflowerblue;
+    background-color:white;
     color: black;
+    display: flex;
+    border: 1px solid #000;
+}
+
+.pUpload{
+    margin-top: 7px;
+    margin-left: 6px;
+    
+}
+
+.faUpload{
+    margin-top: 11px;
+    margin-left: 10px;
 }
 
 h1 {
@@ -203,6 +230,7 @@ h1 {
 
 label {
     color: black;
+    position: block;
 }
 
 .faEdit {
@@ -225,6 +253,7 @@ label {
     width: 400px;
     margin-top: 20px;
     margin-left: 8px;
+    object-fit: cover;
 }
 
 .profile{
@@ -247,7 +276,7 @@ label {
     box-sizing: border-box;
     height:650px;
     width: 456px;
-    margin-right: 100px;
+    margin-right: 50px;
     align-items: center;
    
     transition: 0.5s;
@@ -287,7 +316,7 @@ h3{
     margin-top: 50px;
     width: fit-content;
     /* background-color:#fff; */
-    /* justify-content: space-between; */
+    justify-content: center;
     /* align-items:flex-start; */
     display:flex;
     /* flex-wrap: wrap; */
@@ -298,7 +327,7 @@ h3{
     margin-top:10px;
     margin-bottom:10px;
     margin-left:20px;
-    width: 250px;
+    /* width: 250px; */
     height:290px;
     background-color:#fff;
 }
@@ -308,7 +337,7 @@ h3{
 }
  
 .imgArts {
-    width: 250px;
+    /* width: 250px; */
     height:250px;
     position: relative;
    
@@ -318,7 +347,7 @@ h3{
     color:#000;
     font-size:14px;
     background-color: #fff;
-    width:250px;
+    /* width:250px; */
     height:25px;
     display:flex; 
     justify-content: space-between;

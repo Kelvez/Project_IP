@@ -22,15 +22,14 @@ export default {
             this.arts = myArts.data.data;
             let cpt = 0;
             for (let art of this.arts) {
-                art.image = await artsApi.arrayBufferToBase64(art.image.data);
+                art.image = "http://localhost:3001/artsImage/" + art.image;
                 art.likes = await likesApi.likesArt(art._id);
                 art.cpt = cpt;
                 let userImage = await userApi.getUser(art.user);
                 if (userImage.data.data.imageProfil == "" || userImage.data.data.imageProfil == undefined) {
                     art.imageProfilUser = "/src/assets/Images/profile/noProfilePic.webp"
                 } else {
-                    let image = await artsApi.arrayBufferToBase64(userImage.data.data.imageProfil.data);
-                    art.imageProfilUser= 'data:image/png;base64,' + image
+                    art.imageProfilUser= 'http://localhost:3001/profileImage/' + userImage.data.data.imageProfil
                 }
                 art.username = userImage.data.data.username;
                 
@@ -71,7 +70,6 @@ export default {
             document.getElementsByClassName('errorMsg')[nb].style.opacity = "0";
         },
         async userClicked(user) {
-            console.log(user);
             this.$router.push({name: "user", params: {id: user}});
         }
     }
@@ -82,7 +80,7 @@ export default {
     <section class="profile">
         <div class="rows">
             <div v-for="art in this.arts" class="pics" :key="art._id">
-                <img class="imgArts" @click="artClicked(art)" :src="'data:image/png;base64,' + art.image">
+                <img class="imgArts" @click="artClicked(art)" :src="art.image">
                 <div class="position">
                     <img class="profilPicture" :title="art.username" :src="art.imageProfilUser" @click="userClicked(art.user)">
                     <div class="names">{{art.name}}</div>
@@ -125,11 +123,13 @@ html {
     /* margin-top: 50px; */
     width: fit-content;
     /* background-color:#fff; */
-    /* justify-content: space-between; */
+    justify-content:center;
     /* align-items:flex-start; */
     display:flex;
     /* flex-wrap: wrap; */
     flex-flow: row wrap;
+    margin-right: 50px;
+    margin-left: 30px;
 
 }
 /*----image---*/
@@ -137,7 +137,7 @@ html {
     margin-top:10px;
     margin-bottom:10px;
     margin-left:20px;
-    width: 257px;
+    /* width: 257px; */
     height:291px;
     background-color:rgb(233, 233, 233);
     border: 3px solid rgb(187, 186, 186);
@@ -149,7 +149,7 @@ html {
 }
  
 .imgArts {
-    width: 250px;
+    /* width: 250px; */
     height:250px;
     position: relative;
    
@@ -162,12 +162,14 @@ html {
     margin-bottom: 4px;
     border-radius: 8px;
     background-color: black;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .position{
     color:#000;
     font-size:14px;
-    width:250px;
+    /* width:250px; */
     height:25px;
     display:flex; 
     justify-content: space-between;
