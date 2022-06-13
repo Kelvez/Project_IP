@@ -43,7 +43,6 @@ const artsOfUser = async (idUser) => {
 const plusView = async (id) => {
     try {
         const art = await Arts.findById(id);
-        console.log(id)
         const updateArt = await Arts.updateOne({"_id": id}, {$set: {"views": art.views+1}});
         if (updateArt) {
             return {success: true, data: updateArt};

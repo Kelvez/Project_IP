@@ -80,17 +80,22 @@ export default {
         },
         async followOrUnfollow() {
             if (this.me) {
-                const followed = await followApi.isFollowed(this.me.data.data._id, this.user._id);
-                if (followed) {
-                    await followApi.delete(this.me.data.data._id, this.user._id);
-                    document.getElementById('followIcon').style.color = "white";
-                    this.follow= 'follow';
-                    this.nbFollow--;
+                if (this.me.data.data._id == this.user._id) {    
+                    document.getElementById('errorMsgFollow').style.opacity = "1";
+                    setTimeout(this.errorFollowDisapear, 3000);
                 } else {
-                    await followApi.create(this.me.data.data._id, this.user._id);
-                    document.getElementById('followIcon').style.color = "rgb(38, 38, 255)";
-                    this.follow= 'Unfollow';
-                    this.nbFollow++;
+                    const followed = await followApi.isFollowed(this.me.data.data._id, this.user._id);
+                    if (followed) {
+                        await followApi.delete(this.me.data.data._id, this.user._id);
+                        document.getElementById('followIcon').style.color = "white";
+                        this.follow= 'follow';
+                        this.nbFollow--;
+                    } else {
+                        await followApi.create(this.me.data.data._id, this.user._id);
+                        document.getElementById('followIcon').style.color = "rgb(38, 38, 255)";
+                        this.follow= 'Unfollow';
+                        this.nbFollow++;
+                    }
                 }
             } else {
                 document.getElementsByClassName('errorMsg')[0].style.opacity = "1";
@@ -99,6 +104,9 @@ export default {
         },
         youMustLoginDispear() {
             document.getElementsByClassName('errorMsg')[0].style.opacity = "0";
+        }, 
+        errorFollowDisapear() {
+            document.getElementById('errorMsgFollow').style.opacity = "0";
         }
     }
 }
@@ -131,7 +139,8 @@ export default {
                             <font-awesome-icon id="followIcon" class="iLikeArt" @click="followOrUnfollow" :icon="['fas', 'users']"/>
                             <h5>{{this.follow}}</h5>
                             <p class="nbImpress">{{this.nbFollow}}</p>
-                        </div>                        
+                        </div>    
+                        <p id="errorMsgFollow">You cannot follow yourself !</p>                    
                         <div class="user-like">
                             <div class="iconLayout">
                                 <font-awesome-icon class="iLikeArt" id="likeIcon" @click="iLikeButton" :icon="['fas', 'thumbs-up']"/>
@@ -163,6 +172,19 @@ export default {
 </template>
 
 <style scoped>
+
+#errorMsgFollow {
+    z-index: 10;
+    color: red;
+    position: absolute;
+    width: 115px;
+    background-color: rgba(0, 0, 0, 0.76);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 5px;
+    opacity: 0;
+    transition: 0.5s;
+}
 .iconLayout{
     background-color: rgba(0, 0, 0, 0.76);
     padding-right: 25px;

@@ -359,10 +359,7 @@ body{
     font-size:24px;
     margin-right: 220px;
 }
-.ri-close-circle-line:hover{
-    color:blue;
-   
-}
+
 .follower-icon{
     margin-top: 50px;
     margin-left: -17px;
@@ -385,10 +382,6 @@ input[type="file"]{
     font-size:40px;
     
 }
-.ri-folder-open-fill:hover{
-   color:blue;
-    
-}
 .user-like{
     margin-top: 70px;
 }
@@ -396,11 +389,7 @@ input[type="file"]{
     color:white;
     font-size: 30px;
 }
-.iLikeArt:hover{
-    color:blue;
-    cursor: pointer;
 
-}
 /*---description---*/
 
 .description{

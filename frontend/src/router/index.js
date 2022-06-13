@@ -9,16 +9,16 @@ import User from '../views/User.vue'
 import ProfileUpdate from '../views/ProfileUpdate.vue'
 import ProfileView from '../views/ProfileView.vue'
 import Arts from '../views/Arts.vue'
-import NotifTest from '../views/NotifTest.vue'
 import ArtDetails from '../views/ArtDetails.vue'
 import ArtUpdateVue from '../views/ArtUpdate.vue'
+import Slider from '../views/Slider.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'main',
+      path: '/oldMain',
+      name: 'oldMain',
       component: MainPage
     },
     {
@@ -79,6 +79,11 @@ const router = createRouter({
       path: '/art-update/:id',
       name: 'artUpdate',
       component: ArtUpdateVue
+    },
+    {
+      path: '/',
+      name: 'main',
+      component: Slider
     }
   ]
 })
