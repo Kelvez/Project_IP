@@ -12,6 +12,7 @@
                 learn new techniques and get money from selling art on websites as well.</h2>
             <div id="about1">
                 <img class="imgAbout" src="../assets/Images/about/about1.jpg">
+                <img class="imgAbout" id="secondImage" src="../assets/Images/artsLogo.png">
             </div>
             </div>
             <div>
@@ -28,6 +29,10 @@
 </template>
 
 <style scoped>
+
+#secondImage {
+    margin-left: 100px;
+}
 
 section {
     background-color: white;
@@ -68,6 +73,7 @@ section {
     font-size: 26px;
     line-height: 49px;
     color: #000000;
+    text-align: justify;
 }
 .imgAbout{
     width: 500px;
