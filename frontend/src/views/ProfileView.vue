@@ -21,7 +21,7 @@ export default {
         },
         profilPic: null,
         error: '',
-        artsOfUser: []
+        artsOfUser: [],
         }
     },
     async mounted() {
@@ -84,7 +84,6 @@ export default {
 
 <template>
     <section class="profile">
-     
         <div class="row">
             <div class="p-col1">
                 <a href="profile-update">
@@ -116,12 +115,11 @@ export default {
                     <br>
                     <div class="buttons">
                         <button class="newArtButton" id="uploadNewArtButton" type="submit">Upload</button>
-                        <button class="newArtButton" id="cancelNewArtButton" @click="this.cancelNewArt">Cancel</button>
+                        <button class="newArtButton" id="cancelNewArtButton" @click.prevent="this.cancelNewArt">Cancel</button>
                     </div>
                     <p class="errorMsg">{{error}}</p>
                 </form>
             </div> 
-            
             <div class="rows">
                 <div v-for="art in this.artsOfUser" class="pics" :key="art._id">
 
@@ -134,16 +132,10 @@ export default {
                         </div>
                     </div>
                     <br>
-                    
-
                 </div>
-
-                
             </div>
             <!-- <h1> No arts uploaded </h1> -->
         </div>
-
-        
     </section>
 </template>
 
@@ -158,7 +150,6 @@ export default {
     background-color: rgba(255, 0, 0);
     color: white;
 }
-
 .newArtButton {
     margin-top: 10px;
     border-radius: 10px;
@@ -254,6 +245,7 @@ label {
     margin-top: 20px;
     margin-left: 8px;
     object-fit: cover;
+    /* border-radius: 100%; */
 }
 
 .profile{
@@ -286,7 +278,6 @@ label {
     box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
 
 }
-
 .p-col1 .fa{
     display:block;
     color:blue;
@@ -302,7 +293,6 @@ h3{
     margin: 10px 0;
     font-family: 'Poppins', sans-serif;
 }
-
 .row{
     justify-content:flex-start;
     margin-left: 40px;
@@ -311,7 +301,6 @@ h3{
 }
 
 /*---item feature---*/
-
 .rows {
     margin-top: 50px;
     width: fit-content;
@@ -335,14 +324,12 @@ h3{
     box-shadow:0 0 20px 0px rgba(17, 15, 15, 0.2);  
     
 }
- 
 .imgArts {
     /* width: 250px; */
     height:250px;
     position: relative;
    
 }
-
 .position{
     color:#000;
     font-size:14px;
@@ -380,5 +367,4 @@ h3{
     color:blue;
     font-size: 16px;
 }
-
 </style>

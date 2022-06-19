@@ -1,4 +1,5 @@
 <script>
+import $ from "jquery";
 import authApi from "@/apis/auth";
 import userApi from "@/apis/user";
 import likesApi from "@/apis/likes";
@@ -12,8 +13,12 @@ export default {
     },
     async mounted() {
         await this.showArts();  
-        
+        $('.carousel').flipster({
 
+            style:'carousel' ,
+            spacing: -0.3,
+
+        });
     },
     methods:{
         async showArts() {
@@ -97,7 +102,45 @@ export default {
 </template>
 
 <style scoped>
+@import '@/assets/Style/jquery.flipster.min.css';
 
+#ux-ui
+{
+    margin-top: -160px;
+    margin-left: 140px;  
+}
+#nft
+{
+    margin-top: -160px;
+    margin-left: 150px;  
+}
+#graphic
+{
+    margin-top: -160px;
+    margin-left: 70px;  
+}
+
+
+#contant_art
+{
+    color: black;
+    text-align: center;
+    padding-top: 170px;
+    font-size: 15px;
+    margin-top:0;
+}
+
+.name_type
+{
+    
+    color: rgb(255, 255, 255);
+    margin-top: -160px;
+    margin-left: 110px;
+    position: relative;
+    font-size: 20px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
 .errorMsg {
     opacity: 0;
     position: absolute;
@@ -203,5 +246,7 @@ html {
     color:blue;
     font-size: 16px;
 }
+
+
 
 </style>
