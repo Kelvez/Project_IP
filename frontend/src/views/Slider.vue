@@ -41,9 +41,9 @@ export default {
 <template>
 <body>
     <section class="home">
-      <img class="video-slide active" src="/src/assets/Images/slider/1.jpg">
+      <img class="video-slide active" src="/src/assets/Images/slider/25571.jpg">
       <img class="video-slide" src="/src/assets/Images/slider/2.jpg">
-      <img class="video-slide" src="/src/assets/Images/slider/3.jpg">
+      <img class="video-slide" src="/src/assets/Images/slider/42271.jpg">
       <img class="video-slide" src="/src/assets/Images/slider/4.jpg">
       <img class="video-slide" src="/src/assets/Images/slider/5.jpg">
       

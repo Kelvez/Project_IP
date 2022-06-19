@@ -111,10 +111,12 @@ export default {
           <a href="/" class="artsHeader">Arts</a>
         </div>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/arts">Discover</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a class="milieuNavbar" href="/">Home</a></li>
+            <li><a class="milieuNavbar" href="/about">About</a></li>
+            <li><a class="milieuNavbar" href="/arts">Discover</a></li>
+            <li><a class="milieuNavbar" href="/contact">Contact</a></li>
+        </ul>
+        <ul>
             <li v-if="isLogged"><font-awesome-icon id="notifHeaderIcon" @click="notifClicked" :icon="['fas', 'bell']"/></li>
             <li v-if="isLogged"><a href="/profile"><font-awesome-icon :icon="['fas', 'user']"/></a></li>
             <!-- <li><a href="#"><font-awesome-icon :icon="['fas', 'user']"/></a></li> -->
@@ -126,6 +128,9 @@ export default {
 </template> 
 
 <style scoped>
+.milieuNavbar{
+  font-weight: bold;
+}
 .header {
     height: 300px;
     background-image: linear-gradient(rgba(80, 95, 153, 0.2),rgba(4,9,30,0.2)),url(../assets/Images/mainpage/background.jpg);
