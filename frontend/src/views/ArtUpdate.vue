@@ -46,7 +46,7 @@ export default {
         if (this.me) {
             const liked = await likesApi.isLiked(this.art._id, this.me.data.data._id)
             if (liked.data.data) {
-                document.getElementById('likeIcon').style.color = "green";
+                document.getElementById('likeIcon').style.color = "blue";
                 this.like = "unlike"
             }
             const followed = await followApi.isFollowed(this.me.data.data._id, this.user._id);
@@ -84,10 +84,12 @@ export default {
 <body>
     <form method="post" @submit.prevent="submitUpdate">
         <section class="detail-image">
+             <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
             <div class="img-detail">
                 <!--body-->
                 <div class="middle-content">
                     <div class="images">
+                        <div class="sub-title"><i class="ri-edit-box-fill"></i><p class="editing">&nbsp;EDITING</p></div>
                         <input type="text" class="titleArt" v-model="artUpdate.name" :v-bind="artUpdate.name"/> 
                         <!-- {{this.art.name}} </p> -->
                         <p class="errorMsg">You must login to follow or like</p>
@@ -119,6 +121,7 @@ export default {
             <div class="description">
                 <h2 class="descriptionTitle">Description: </h2>
                 <div class="paragraph">
+                   
                     <textarea class="descriptionTextArea"  v-model="artUpdate.desc" :v-bind="artUpdate.desc"></textarea>
                 </div>
             </div>
@@ -138,6 +141,29 @@ export default {
 </template>
 
 <style scoped>
+
+.editing{
+    position: absolute;
+    margin-top: -80px;
+    margin-left: 95px;
+}
+
+/*sub title*/
+.sub-title{
+    height: 60px;
+    margin-top:20px;
+   color:rgb(56, 56, 240);
+    font-size: 40px;
+
+}
+.ri-edit-box-fill{
+    font-size:60px;
+    color:rgb(56, 56, 240);
+    margin-top:10px;
+    margin-left:40px;
+    
+}
+
 #successUpdate{
     color: green;
     z-index: 5;
@@ -210,10 +236,17 @@ export default {
     border-radius: 20px;
     font-weight: bold;
 }
+input{
+    width: 550px;
+}
 #updateButton{
     width: 550px;
     background-color: white;
     margin-top: -130px;
+}
+#updateButton:hover{
+    background-color: rgb(36, 199, 36);
+
 }
 
 #deleteButton{
@@ -223,14 +256,19 @@ export default {
     margin-top: -70px;
 
 }
+#deleteButton:hover{
+    background-color:rgb(49, 46, 46);
+}
 
 
 .descriptionTextArea{
     color: white;
-    background-color: black;
-    width: 500px;
-    height: 100px;
-    text-align: center;
+    background-color: rgb(141, 136, 136);
+    width: 550px;
+    height: 80px;
+    text-align:center;
+    border-radius: 30px;
+    margin-top: 40px;
 }
 .iconLayout{
     background-color: rgba(0, 0, 0, 0.76);
@@ -269,13 +307,14 @@ export default {
 }
 
 .titleArt {
-    margin-top: 20px;
+    margin-top: 15px;
     text-align: center;
     left: 50%;
     transform: translateX(-50%);
     font-size: 35px;
     color: white;
-    background-color: black;
+   background-color: rgb(141, 136, 136);
+    border-radius: 30px;
 }
 
 .errorMsg{
@@ -394,10 +433,11 @@ input[type="file"]{
 
 .description{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 180px;
     width: 100%;
     height:330px;
     position: relative;
+   
 }
 .description h2{
     color:gray;
@@ -409,5 +449,6 @@ input[type="file"]{
     font-size:16px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
 
 </style>

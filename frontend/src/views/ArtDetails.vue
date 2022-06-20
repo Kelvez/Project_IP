@@ -46,7 +46,7 @@ export default {
         if (this.me) {
             const liked = await likesApi.isLiked(this.art._id, this.me.data.data._id)
             if (liked.data.data) {
-                document.getElementById('likeIcon').style.color = "green";
+                document.getElementById('likeIcon').style.color = "blue";
                 this.like = "unlike"
             }
             const followed = await followApi.isFollowed(this.me.data.data._id, this.user._id);
@@ -63,7 +63,7 @@ export default {
                 const liked = await likesApi.isLiked(this.art._id, this.me.data.data._id)
                 if (!liked.data.data) {
                     await likesApi.create(this.art._id, this.me.data.data._id);
-                    document.getElementById('likeIcon').style.color = "green";
+                    document.getElementById('likeIcon').style.color = "blue";
                     this.nbLikes++;
                     this.like = "unlike";
                 } else {
@@ -115,12 +115,14 @@ export default {
 <template>
 <body>
     <section class="detail-image">
+         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
         <div class="img-detail">
             <div class="user-info">
                 <div class="item">   
                     <a class="linkProfile" :href="'/user/'+this.user._id"><img :src="this.user.imageProfil"> </a>
                     <div>
                         <a class="linkProfile" :href="'/user/'+this.user._id"><p class="usernameArtDetails">{{this.user.username}}</p></a>
+                        <p class="titleArt"> {{this.art.name}} </p>
                     </div>
                 </div>    
             </div>
@@ -128,7 +130,7 @@ export default {
             <!--body-->
             <div class="middle-content">
                 <div class="images">
-                    <p class="titleArt"> {{this.art.name}} </p>
+                    
                     <p class="errorMsg">You must login to follow or like</p>
                     <img class="imageArt" :src="this.art.image">
                 </div>
@@ -164,7 +166,11 @@ export default {
         <div class="description">
             <h2 class="descriptionTitle">Description: </h2>
             <div class="paragraph">
-                <p class="descriptionText">{{this.art.desc}}</p>
+                <!--add new description -->
+                <p class="In-ArtDetailsAccount"><i class="ri-account-circle-fill"></i>&nbsp;ACCOUNT-PROFILE:&nbsp;&nbsp;@{{this.user.username}}</p>
+                
+                <p class="In-titleArt"><i class="ri-github-fill"></i>&nbsp;NAME Of ART:&nbsp;&nbsp;#  {{this.art.name}}</p>
+                <p class="descriptionText"><i class="ri-edit-2-fill"></i>&nbsp;{{this.art.desc}}</p>
             </div>
         </div>
     </section>
@@ -210,24 +216,29 @@ export default {
 }
 
 .images {
-    height: 700px;
+   width: 1063px;
+    height:658px;
+    margin-top: 20px;
+    margin-left: 100px;
 }
 
 .imageArt {
-    width: 100%;
+   width: 1063px;
     position: relative;
     height: fit-content;
     object-fit: contain;
-    height: 700px;
+   height:658px;
+   margin-top: 40px;
 
 }
 
 .titleArt {
     /* width: 130%; */
     /* margin-left: 50%; */
-    text-align: center;
-    font-size: 35px;
-    color: white;
+    margin-left: 30px;
+    font-size: 24px;
+    color: rgb(68, 67, 67);
+    margin-top: -15px;
 }
 
 .errorMsg{
@@ -256,10 +267,13 @@ body{
 }
 .user-info{
     width: 100%;
-    height: 30px;
+    height: 180px;
     position: relative;
     display:flex;
     justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: -50px;
+    align-items:center;
 }
 
 .user-info .item{
@@ -356,23 +370,41 @@ input[type="file"]{
 /*---description---*/
 
 .description{
-    text-align: center;
-    margin-top: 100px;;
+    margin-top: 10%;
     width: 100%;
     height:200px;
     position: relative;
 }
 .description h2{
-    color:gray;
+   color:rgb(201, 191, 191);
     font-size:30px;
-    margin-left: 70px;
+    margin-left: 100px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width:160px;
+    margin-left: 100px;
 }
 .description .paragraph{
     color:gray;
     font-size:16px;
-    margin-left: 70px;
+    margin-left: 100px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/*------3 icons in description----*/
+.ri-message-2-fill{
+    color:#fff;
+    font-size: 17px;
+}
+.ri-account-circle-fill{
+   color:#fff;
+    font-size: 20px;
+}
+.ri-github-fill{
+     color:#fff;
+    font-size: 20px;
+}
+.ri-edit-2-fill{
+    color:#fff;
+    font-size: 20px;
 }
 
 </style>

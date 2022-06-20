@@ -84,6 +84,7 @@ export default {
 
 <template>
     <section class="profile">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
         <div class="row">
             <div class="p-col1">
                 <a href="profile-update">
@@ -91,16 +92,17 @@ export default {
                 </a>
                 <img class="imgProfil" :src="profilPic">
                 <p class="namesProfil">{{this.dataUpdateUser.firstName}} {{this.dataUpdateUser.lastName}}</p>
-                <p class="description">{{this.dataUpdateUser.aboutMeDesc}}</p>
+                
                 <p class="usernameProfil">{{this.dataUpdateUser.username}}</p>
+                <p class="description">{{this.dataUpdateUser.aboutMeDesc}}</p>
                 <div class="follow">
                     <p>Follower&nbsp;&nbsp;{{this.dataUpdateUser.follower}}&nbsp;|&nbsp;Following&nbsp;&nbsp;{{this.dataUpdateUser.following}}</p>
                 </div>
             </div>
-            <div  class="buttonNewArt"  @click="this.uploadNewArt">
+            <!--<div  class="buttonNewArt"  @click="this.uploadNewArt">
                 <font-awesome-icon class="faUpload" :icon="['fas', 'upload']"/>
                 <p class="pUpload"> Upload new arts </p>
-            </div>
+            </div>--->
             <div id="newArt">
                 <form method="post" @submit.prevent="submitNewArt">
                     <h2> New Art</h2>
@@ -121,6 +123,12 @@ export default {
                 </form>
             </div> 
             <div class="rows">
+                 <div class="create">
+                    <div class="buttonNewArt" @click="this.uploadNewArt"><i class="ri-add-circle-fill"></i> </div>
+                    <div class="word-center">Create Project</div>
+              <!--  <button class="buttonNewArt" @click="this.uploadNewArt"> Upload new arts </button>-->
+
+                </div>
                 <div v-for="art in this.artsOfUser" class="pics" :key="art._id">
 
                     <img class="imgArts" :src='art.image' @click="artClicked(art)">
@@ -140,6 +148,11 @@ export default {
 </template>
 
 <style scoped>
+.word-center {
+    margin-top: 10px;
+    color: rgb(129, 129, 129);
+}
+
 #uploadNewArtButton{
     background-color: black;
     color: white
@@ -191,17 +204,15 @@ h2 {
     margin-left: 40%;
 }
 .buttonNewArt {
-    position: absolute;
-    margin-left: 85%;
-    margin-top: 5px;
-    width: 155px;
-    height: 40px;
-    border-radius: 20px;
-    font-size: 15px;
-    background-color:white;
-    color: black;
-    display: flex;
-    border: 1px solid #000;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(155, 152, 152);
+    border-radius:100%;
+    margin-left: 95px;
+    margin-top:80px;
+    align-items: center;
+    display:flex; 
+    justify-content: center;
 }
 
 .pUpload{
@@ -225,11 +236,15 @@ label {
 }
 
 .faEdit {
-    position: absolute;
-    color: black;
-    height: 50px;
-    margin-left: 410px;
-    margin-top: -35px;
+   position: absolute;
+    color: blue;
+    
+    font-size: 35px;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.faEdit:hover{
+    color:grey;
 }
 
 .description {
@@ -240,12 +255,21 @@ label {
 
 
 .imgProfil {
-    height: 400px;
-    width: 400px;
-    margin-top: 20px;
-    margin-left: 8px;
+    height: 220px;
+    width: 220px;
+    border-radius: 100%;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border:3px solid rgb(114, 106, 106);
     object-fit: cover;
     /* border-radius: 100%; */
+}
+.namesProfil {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:14px;
+    color:black;
+
 }
 
 .profile{
@@ -258,17 +282,16 @@ label {
     margin-left: 100px;
     margin-right:100px;
 
-
 }
 .p-col1{
     background:#fff;
-    margin-top:50px;
+    margin-top: 20px;
     margin-bottom:5%;
     padding: 20px 20px;
     box-sizing: border-box;
     height:650px;
-    width: 456px;
-    margin-right: 50px;
+    width: 350px;
+    margin-right: 0px;
     align-items: center;
    
     transition: 0.5s;
@@ -305,11 +328,34 @@ h3{
     margin-top: 50px;
     width: fit-content;
     /* background-color:#fff; */
-    justify-content: center;
+   
     /* align-items:flex-start; */
     display:flex;
     /* flex-wrap: wrap; */
     flex-flow: row wrap;
+}
+.create{
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:20px;
+    width: 250px;
+    height:290px;
+    background-color:#fff;
+     align-items:center;
+    text-align:center;
+
+}
+.create:hover{
+     box-shadow:0 0 20px 0px rgba(0,0,0,0.2);
+    
+}
+.ri-add-circle-fill{
+    color:blue;
+    font-size:24px;
+}
+.ri-add-circle-fill:hover{
+    color:black;
+    font-size:24px;
 }
 /*----image---*/
 .pics{
@@ -351,7 +397,7 @@ h3{
 }
 .rows .cols2{
    margin-top:50px;
-    width: 1100px;
+    /* width: 1100px; */
     height:231px;
     background-color:#fff;
     justify-content: space-between;
