@@ -4,7 +4,7 @@ This is the Internet Programming project for Institute of Technology of Cambodia
 
 ## Arts
 
-The project is named arts sharing and it is a website that allows user to upload images to share it with the visitors of the website
+The project is named arts sharing and it is a website that allows user to upload images and share it with the visitors of the website
 
 ## Installation
 
