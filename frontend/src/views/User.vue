@@ -173,6 +173,7 @@ label {
     width: 400px;
     margin-top: 6px;
     margin-left: 8px;
+    object-fit: cover;
 }
 
 .profile{
@@ -240,7 +241,7 @@ h3{
     margin-top:10px;
     margin-bottom:10px;
     margin-left:20px;
-    width: 250px;
+    /* width: 250px; */
     height:290px;
     background-color:#fff;
 }
@@ -250,7 +251,7 @@ h3{
 }
  
 .imgArts {
-    width: 250px;
+    /* width: 250px; */
     height:250px;
     position: relative;
    
@@ -260,7 +261,7 @@ h3{
     color:#000;
     font-size:14px;
     background-color: #fff;
-    width:250px;
+    /* width:250px; */
     height:25px;
     display:flex; 
     justify-content: space-between;
