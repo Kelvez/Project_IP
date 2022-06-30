@@ -76,6 +76,9 @@ export default {
 
 <template>
     <section class="profile">
+        <div class="art-header">  
+            <h2>Best OF Art</h2>
+        </div>
         <div class="rows">
             <div v-for="art in this.arts" class="pics" :key="art._id">
                 <img class="imgArts" @click="artClicked(art)" :src="art.image">
@@ -241,11 +244,31 @@ html {
 
 body
 {
-    margin: 0;
-    padding: 0;
+   
     font-family: sans-serif;
     position: relative;
 
+}
+.art-header{
+    height:220px;
+    width: 100%;
+    text-align: center;
+    background-image: linear-gradient(rgba(80, 95, 153, 0.3),rgba(4,9,30,0.3)),url(src/assets/Images/header/R4.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  
+}
+
+.art-header h2{
+    color:#fff;
+    font-size:60px;
+   padding-top: 80px;
+    font-family: Cinzel Decorative; 
+    font-weight: bold;
+
+
+   
 }
 
 .menu_bar{

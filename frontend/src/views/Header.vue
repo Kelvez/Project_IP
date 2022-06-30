@@ -16,10 +16,15 @@ export default {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'mainpage/background.jpg")';
     } else if (this.$route.name == "contact" || this.$route.name == "profileUpdate" || this.$route.name == "profile" 
-            || this.$route.name == "arts" || this.$route.name == "user") {
+             || this.$route.name == "user") {
       document.getElementsByClassName("header")[0].style.height="320px";
       document.getElementsByClassName("header")[0].style.backgroundImage=this.backgroundBanner+'header/R4.jpg")';
-    } else {
+    }else if(this.$route.name == "arts"){
+      document.getElementsByClassName("header")[0].style.height="100px";
+      
+
+    }
+     else {
       document.getElementsByClassName("header")[0].style.backgroundImage="";
       document.getElementsByClassName("header")[0].style.height="90px";
     }
